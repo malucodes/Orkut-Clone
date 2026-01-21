@@ -1,0 +1,309 @@
+/* Reset e Definição de Cores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --orkut-blue-header: #6d84b4; /* Azul da barra superior */
+    --orkut-bg: #d4e1f5;          /* Azul de fundo da página */
+    --orkut-card-bg: #bfd0ea;     /* Azul claro dos cards */
+    --orkut-text-blue: #003399;    /* Azul dos títulos e links */
+    --white: #ffffff;
+}
+
+body {
+    background-color: var(--orkut-bg);
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px; /* O Orkut usava fontes bem pequenas */
+    color: #333;
+}
+
+/* Header Estilo Orkut */
+.orkut-header {
+    background: linear-gradient(to bottom, #7da5ce 0%, #6d84b4 100%);
+    color: var(--white);
+    padding: 8px 0;
+    border-bottom: 1px solid #506894;
+}
+
+.header-content {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    height: 25px;
+}
+
+.main-nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.search-bar input {
+    padding: 2px 5px;
+    border: 1px solid #506894;
+    border-radius: 2px;
+}
+
+/* Layout Principal */
+.main-wrapper {
+    max-width: 960px;
+    margin: 15px auto;
+}
+
+.orkut-grid {
+    display: grid;
+    grid-template-columns: 160px 1fr 280px; /* As 3 colunas clássicas */
+    gap: 15px;
+}
+
+/* Estilo dos Cards (Containers brancos com bordas azuis) */
+.card {
+    background-color: var(--white);
+    border: 1px solid #a6bbdb;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.card h1, .card h2, .card h3 {
+    color: var(--orkut-text-blue);
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+/* Coluna Esquerda: Perfil */
+.profile-pic-card {
+    text-align: center;
+}
+
+.profile-frame {
+    border: 1px solid #ccc;
+    padding: 3px;
+    margin-bottom: 10px;
+    background-color: var(--white);
+}
+
+.profile-frame img {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+}
+
+.user-name {
+    font-weight: bold;
+    color: var(--orkut-text-blue);
+    margin-bottom: 10px;
+}
+
+.profile-menu {
+    list-style: none;
+    text-align: left;
+}
+
+.profile-menu li {
+    padding: 3px 0;
+}
+
+.profile-menu li a {
+    color: var(--orkut-text-blue);
+    text-decoration: none;
+}
+
+/* Coluna Central: Informações */
+.welcome-card {
+    background-color: var(--orkut-card-bg); /* O card principal era mais azulado */
+    border-top-right-radius: 35px;
+}
+
+.status-row {
+    display: flex;
+    gap: 15px;
+    margin: 10px 0;
+    padding: 8px;
+    background: var(--white);
+    border: 1px solid #a6bbdb;
+}
+
+.status-item {
+    font-weight: bold;
+    color: #555;
+}
+
+.profile-data {
+    background: var(--white);
+    padding: 0;
+    border: 1px solid #a6bbdb;
+}
+
+.data-row {
+    display: flex;
+    padding: 5px;
+}
+
+/* Alternância de cores na ficha social */
+.data-row:nth-child(odd) {
+    background-color: #d4e1f5; /* Azul mais marcado */
+}
+
+.data-row:nth-child(even) {
+    background-color: #f0f5fa; /* Azul clarinho */
+}
+
+.label {
+    width: 100px;
+    font-weight: bold;
+    color: var(--orkut-text-blue);
+    text-align: right;
+    margin-right: 10px;
+}
+
+/* Coluna Direita: Amigos e Comunidades */
+.friends-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.friend-item {
+    text-align: center;
+}
+
+.friend-item img {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 2px;
+}
+
+.friend-item span {
+    display: block;
+    color: var(--orkut-text-blue);
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.card-header a {
+    color: var(--orkut-text-blue);
+    text-decoration: none;
+}
+
+/* Itens de Comunidade */
+.comm-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.comm-item img {
+    border: 1px solid #eee;
+}
+
+.comm-item span {
+    color: var(--orkut-text-blue);
+}
+
+/* Estilos para Edição de Perfil */
+.header-with-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.header-with-action h1 {
+    margin-bottom: 0;
+}
+
+.orkut-btn {
+    background-color: #d4e1f5;
+    border: 1px solid #a6bbdb;
+    color: #003399;
+    font-size: 10px;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
+.edit-input {
+    width: 100%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    padding: 2px;
+    border: 1px solid #a6bbdb;
+    color: #333;
+}
+
+/* Rodapé dos cards laterais (Amigos/Comunidades) */
+.card-action {
+    text-align: left;
+    margin-top: 8px;
+}
+
+.card-action a {
+    color: var(--orkut-text-blue);
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.card-action a:first-child {
+    text-decoration: underline;
+}
+
+.card-action a:last-child {
+    border: 1px solid #ccc;
+    border-radius: 100px;
+    padding: 2px 4px;
+}
+
+/* Estilos para o modo de gerenciamento */
+.managing .friend-item, 
+.managing .comm-item {
+    cursor: no-drop; /* Indica exclusão */
+    opacity: 0.7;
+    border: 1px dashed red;
+}
+
+.managing .friend-item:hover, 
+.managing .comm-item:hover {
+    background-color: #ffe6e6;
+}
+
+/* Rodapé */
+.orkut-footer {
+    margin-top: 15px;
+    background-color: var(--white);
+    border: 1px solid #a6bbdb;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-links {
+    font-size: 11px;
+}
+
+.footer-links a {
+    color: var(--orkut-text-blue);
+    text-decoration: none;
+    margin: 0 5px;
+}

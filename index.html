@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orkut - Perfil de Maria</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="orkut-header">
+        <div class="header-content">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Orkut_logo.gif" alt="orkut" class="logo">
+            <nav class="main-nav">
+                <a href="#">Início</a>
+                <a href="#">Perfil</a>
+                <a href="#">Página de recados</a>
+                <a href="#">Amigos</a>
+                <a href="#">Comunidades</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="pesquisa do orkut">
+                <button>🔍</button>
+            </div>
+            <div class="user-info">
+                <span>malu@orkut.com</span> | <a href="#">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        <div class="orkut-grid">
+            
+            <aside class="left-column">
+                <div class="card profile-pic-card">
+                    <div class="profile-frame">
+                        <!-- Foto genérica padrão -->
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/150px-Default_pfp.svg.png" alt="Foto de Perfil" id="profile-image">
+                    </div>
+                    <p class="user-name" id="sidebar-name">Malu</p>
+                    <ul class="profile-menu">
+                        <li><a href="#">editar perfil</a></li>
+                        <li><a href="#">perfil</a></li>
+                        <li><a href="#">recados</a></li>
+                        <li><a href="#">album</a></li>
+                        <li><a href="#">videos</a></li>
+                        <li><a href="#">feeds</a></li>
+                        <li><a href="#">listas</a></li>
+                        <li><a href="#">mensagens</a></li>
+                        <li><a href="#">depoimentos</a></li>
+                        <li><a href="#">configurações</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="center-column">
+                <div class="card welcome-card">
+                    <div class="header-with-action">
+                        <h1 id="profile-name">Malu</h1>
+                        <button id="edit-profile-btn" class="orkut-btn">Editar Perfil</button>
+                    </div>
+                    <div class="status-row">
+                        <div class="status-item">confiável: <span class="stars">⭐⭐⭐</span></div>
+                        <div class="status-item">legal: <span class="thumbs">👍👍👍</span></div>
+                        <div class="status-item">sexy: <span class="hearts">❤️❤️❤️</span></div>
+                    </div>
+                    
+                    <div class="profile-data">
+                        <div class="data-row">
+                            <span class="label">relacionamento:</span>
+                            <span class="value" id="profile-rel">solteiro(a)</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">aniversário:</span>
+                            <span class="value" id="profile-birth">21 de julho</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">idade:</span>
+                            <span class="value" id="profile-age">25 anos</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">interesses no orkut:</span>
+                            <span class="value" id="profile-interests">amigos, namoro</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">quem sou eu:</span>
+                            <span class="value" id="profile-bio">Estudante de Ciência da Computação e apaixonada por tecnologia retrô. 💻✨</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">filhos:</span>
+                            <span class="value" id="profile-children">não tenho</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">etnia:</span>
+                            <span class="value" id="profile-ethnicity">não informado</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">humor:</span>
+                            <span class="value" id="profile-humor">feliz</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">orientação sexual:</span>
+                            <span class="value" id="profile-sexual">heterossexual</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">estilo:</span>
+                            <span class="value" id="profile-style">casual</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">fumo:</span>
+                            <span class="value" id="profile-smoke">não</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">bebo:</span>
+                            <span class="value" id="profile-drink">socialmente</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">animais de estimação:</span>
+                            <span class="value" id="profile-pets">gosto de gatos</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">moro:</span>
+                            <span class="value" id="profile-live">sozinho(a)</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">cidade natal:</span>
+                            <span class="value" id="profile-hometown">São Paulo</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">pagina web:</span>
+                            <span class="value" id="profile-web">www.meusite.com</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">paixoes:</span>
+                            <span class="value" id="profile-passions">programação, café</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">esportes:</span>
+                            <span class="value" id="profile-sports">natação</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">atividades:</span>
+                            <span class="value" id="profile-activities">ler, codar</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">país:</span>
+                            <span class="value" id="profile-country">Brasil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card scraps-card">
+                    <h2>meus recados recentes</h2>
+                    <div class="scrap-item">
+                        <strong>João:</strong> "Passando para deixar um scrap e ganhar um de volta! haha"
+                    </div>
+                    <a href="#" class="view-all">ver todos os recados</a>
+                </div>
+            </section>
+
+            <aside class="right-column">
+                <div class="card friends-card">
+                    <div class="card-header">
+                        <h3 id="friends-count">amigos (3)</h3>
+                    </div>
+                    <div class="friends-grid">
+                        <div class="friend-item">
+                            <img src="https://picsum.photos/60?random=1">
+                            <span>Pedro</span>
+                        </div>
+                        <div class="friend-item">
+                            <img src="https://picsum.photos/60?random=2">
+                            <span>Ana</span>
+                        </div>
+                        <div class="friend-item">
+                            <img src="https://picsum.photos/60?random=3">
+                            <span>Carlos</span>
+                        </div>
+                        </div>
+                    <div class="card-action">
+                        <a href="#" id="view-all-friends">ver todos</a>
+                        <a href="#" id="manage-friends">gerenciar</a>
+                    </div>
+                </div>
+
+                <div class="card communities-card">
+                    <div class="card-header">
+                        <h3 id="comm-count">comunidades (4)</h3>
+                    </div>
+                    <div class="comm-list">
+                        <div class="comm-item">
+                            <img src="https://picsum.photos/30?random=10">
+                            <span>Eu odeio acordar cedo</span>
+                        </div>
+                        <div class="comm-item">
+                            <img src="https://picsum.photos/30?random=11">
+                            <span>Tocava a campainha e corria</span>
+                        </div>
+                        <div class="comm-item">
+                            <img src="https://picsum.photos/30?random=12">
+                            <span>Amo Chocolate</span>
+                        </div>
+                        <div class="comm-item">
+                            <img src="https://picsum.photos/30?random=13">
+                            <span>Deus me disse: desce e arrasa</span>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a href="#" id="view-all-comm">ver todas</a>
+                        <a href="#" id="manage-comm">gerenciar</a>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+
+        <footer class="orkut-footer">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Orkut_logo.gif" alt="orkut" class="logo">
+            <div class="footer-links">
+                <a href="#">Sobre o orkut</a> |
+                <a href="#">novidades</a> |
+                <a href="#">centro de segurança</a> |
+                <a href="#">privacidade</a> |
+                <a href="#">termos de uso</a> |
+                <a href="#">ajuda</a>
+            </div>
+        </footer>
+    </main>
+
+</body>
+</html>
