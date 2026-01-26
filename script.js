@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Carregar informações salvas no LocalStorage ao abrir a página
     fields.forEach(field => {
-        const savedValue = localStorage.getItem(field.id);
-        if (savedValue) {
-            const el = document.getElementById(field.id);
-            if (el) el.textContent = savedValue;
+        const el = document.getElementById(field.id);
+        if (el) {
+            const savedValue = localStorage.getItem(field.id);
+            el.textContent = savedValue || '';
         }
     });
 
@@ -50,6 +50,32 @@ document.addEventListener('DOMContentLoaded', function() {
             const isEditing = editBtn.getAttribute('data-editing') === 'true';
 
             if (isEditing) {
+                // Validação da Data de Nascimento
+                const birthEl = document.getElementById('profile-birth');
+                const birthInput = birthEl ? birthEl.querySelector('.edit-input') : null;
+
+                if (birthInput && birthInput.value.trim() !== '') {
+                    const datePattern = /^(\d{2})\/(\d{2})\/(\d{4})$/;
+                    const match = birthInput.value.match(datePattern);
+                    let isValid = false;
+
+                    if (match) {
+                        const d = parseInt(match[1], 10);
+                        const m = parseInt(match[2], 10);
+                        const y = parseInt(match[3], 10);
+                        const date = new Date(y, m - 1, d);
+                        if (date.getFullYear() === y && date.getMonth() === m - 1 && date.getDate() === d) {
+                            isValid = true;
+                        }
+                    }
+
+                    if (!isValid) {
+                        alert('Data de nascimento inválida! Por favor, use o formato DD/MM/AAAA.');
+                        birthInput.focus();
+                        return; // Impede o salvamento se a data for inválida
+                    }
+                }
+
                 // --- AÇÃO DE SALVAR ---
                 
                 fields.forEach(field => {
