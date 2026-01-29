@@ -11,11 +11,11 @@
 
     <header class="orkut-header">
         <div class="header-content">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Orkut_logo.gif" alt="orkut" class="logo">
+            <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
             <nav class="main-nav">
                 <a href="#">Início</a>
                 <a href="#">Perfil</a>
-                <a href="#">Página de recados</a>
+                <a href="scraps.html">Página de recados</a>
                 <a href="#">Amigos</a>
                 <a href="#">Comunidades</a>
             </nav>
@@ -37,36 +37,111 @@
                     <div class="profile-frame">
                         <!-- Foto genérica padrão -->
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/150px-Default_pfp.svg.png" alt="Foto de Perfil" id="profile-image">
+                        <input type="file" id="profile-upload" accept="image/*" style="display: none;">
                     </div>
-                    <p class="user-name" id="sidebar-name">Malu</p>
+                    
+                    <hr class="separator">
+
+                    <div class="sidebar-user-info">
+                        <a href="#" class="user-name" id="sidebar-name">Malu</a>
+                        <div class="sidebar-details">
+                            <span id="sidebar-sex">feminino</span>
+                            <span id="sidebar-rel">solteiro(a)</span>
+                            <span id="sidebar-loc">São Paulo, Brasil</span>
+                        </div>
+                    </div>
+
+                    <hr class="separator">
+
                     <ul class="profile-menu">
-                        <li><a href="#">editar perfil</a></li>
-                        <li><a href="#">perfil</a></li>
-                        <li><a href="#">recados</a></li>
-                        <li><a href="#">album</a></li>
-                        <li><a href="#">videos</a></li>
-                        <li><a href="#">feeds</a></li>
-                        <li><a href="#">listas</a></li>
-                        <li><a href="#">mensagens</a></li>
-                        <li><a href="#">depoimentos</a></li>
-                        <li><a href="#">configurações</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTIgMTJjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+PC9zdmc+" alt=""> <a href="#">perfil</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTQgMkg2Yy0xLjEgMC0xLjk5LjktMS45OSAyTDQgMjBjMCAxLjEuODkgMiAxLjk5IDJIMThjMS4xIDAgMi0uOSAyLTJWOGwtNi02em0yIDE2SDh2LTJoOHYyem0wLTRIOHYtMmg4djJ6bS0zLTVWMy41TDE4LjUgOUgxM3oiLz48L3N2Zz4=" alt=""> <a href="scraps.html">recados</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMjAgNGgtMy4xN0wxNSAySDlMNy4xNyA0SDRjLTEuMSAwLTIgLjktMiAydjEyYzAgMS4xLjkgMiAyIDJoMTZjMS4xIDAgMi0uOSAyLTJWNmMwLTEuMS0uOS0yLTItMnptLTggMTNjLTIuNzYgMC01LTIuMjQtNS01czIuMjQtNSA1LTUgNSAyLjI0IDUgNS0yLjI0IDUgNSA1eiIvPjwvc3ZnPg==" alt=""> <a href="#">fotos</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTggNGwyIDRoLTNsLTItNGgtMmwyIDRoLTNsLTItNEg4bDIgNEg3TDUgNEg0Yy0xLjEgMC0xLjk5LjktMS45OSAyTDIgMThjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY0aC00eiIvPjwvc3ZnPg==" alt=""> <a href="#">videos</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMjAgMkg0Yy0xLjEgMC0yIC45LTIgMnYxOGw0LTRoMTRjMS4xIDAgMi0uOSAyLTJWNGMwLTEuMS0uOS0yLTItMnoiLz48L3N2Zz4=" alt=""> <a href="testimonials.html">depoimentos</a></li>
+                    </ul>
+
+                    <hr class="separator">
+
+                    <h3 class="apps-title">Apps</h3>
+                    <ul class="profile-menu">
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNNDg4aDRWNEg0djR6bTYgMTJoNHYtNGgtNHY0em0tNiAwaDR2LTRINHZnNHptMC02aDR2LTRINHZnNHptNiAwaDR2LTRoLTR2NHptNi0xMHY0aDRWNGgtNHptLTYgNGg0VjRoLTR2NHptNiA2aDR2LTRoLTR2NHptMCA2aDR2LTRoLTR2NHoiLz48L3N2Zz4=" alt=""> <a href="#">adicionar apps</a></li>
+                    </ul>
+
+                    <hr class="separator">
+
+                    <ul class="profile-menu">
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMyAxM2gydi0ySDN2MnptMCA0aDJ2LTJIM3Yyem0wLThoMlY3SDN2MnptNCA0aDE0di0ySDd2MnptMCA0aDE0di0ySDd2MnpNNyA3djJoMTRWN0g3eiIvPjwvc3ZnPg==" alt=""> <a href="#">listas</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMSAxNWgtMnYtNmgydjZ6bTAtOGgtMlY3aDJ2MnoiLz48L3N2Zz4=" alt=""> <a href="#">atualizações</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTkuMTQgMTIuOTRjLjA0LS4zLjA2LS42MS4wNi0uOTQgMC0uMzItLjAyLS42NC0uMDctLjk0bDIuMDMtMS41OGMuMTgtLjE0LjIzLS40MS4xMi0uNjFsLTEuOTItMy4zMmMtLjEyLS4yMi0uMzctLjI5LS41OS0uMjJsLTIuMzkuOTZjLS41LS4zOC0xLjAzLS43LTEuNjItLjk0bC0uMzYtMi41NGMtLjA0LS4yNC0uMjQtLjQxLS40OC0uNDFoLTMuODRjLS4yNCAwLS40My4xNy0uNDcuNDFsLS4zNiAyLjU0Yy0uNTkuMjQtMS4xMy41Ny0xLjYyLjk0bC0yLjM5LS45NmMtLjIyLS4wOC0uNDcgMC0uNTkuMjJMMi43NCA4Ljg3Yy0uMTIuMjEtLjA4LjQ3LjEyLjYxbDIuMDMgMS41OGMtLjA1LjMtLjA5LjYzLS4wOS45NHMuMDIuNjQuMDcuOTRsLTIuMDMgMS41OGMtLjE4LjE0LS4yMy40MS0uMTIuNjFsMS45MiAzLjMyYy4xMi4yMi4zNy4yOS41OS4yMmwyLjM5LS45NmMuNS4zOCAxLjAzLjcgMS42Mi45NGwuMzYgMi41NGMuMDUuMjQuMjQuNDEuNDguNDFoMy44NGMuMjQgMCAuNDQtLjE3LjQ3LS40MWwuMzYtMi41NGMuNTktLjI0IDEuMTMtLjU2IDEuNjItLjk0bDIuMzkuOTZjLjIyLjA4LjQ3IDAgLjU5LS4yMmwxLjkyLTMuMzJjLjEyLS4yMi4wNy0uNDctLjEyLS42MWwtMi4wMS0xLjU4ek0xMiAxNS42Yy0xLjk4IDAtMy42LTEuNjItMy42LTMuNnMxLjYyLTMuNiAzLjYtMy42IDMuNiAxLjYyIDMuNiAzLjYtMS42MiAzLjYtMy42IDMuNnoiLz48L3N2Zz4=" alt=""> <a href="#">configurações</a></li>
                     </ul>
                 </div>
             </aside>
 
             <section class="center-column">
                 <div class="card welcome-card">
-                    <div class="header-with-action">
-                        <h1 id="profile-name">Malu</h1>
-                        <button id="edit-profile-btn" class="orkut-btn">Editar Perfil</button>
+                    
+                    <h1 class="profile-header-name" id="profile-name">Malu</h1>
+                    
+                    <div class="breadcrumbs">
+                        <a href="#">Início</a> &gt; <span>Meu perfil</span>
                     </div>
-                    <div class="status-row">
-                        <div class="status-item">confiável: <span class="stars">⭐⭐⭐</span></div>
-                        <div class="status-item">legal: <span class="thumbs">👍👍👍</span></div>
-                        <div class="status-item">sexy: <span class="hearts">❤️❤️❤️</span></div>
+
+                    <div class="status-box">
+                        <input type="text" placeholder="Qual é a frase do seu perfil?">
+                        <button id="edit-profile-btn" class="btn-edit-status">editar</button>
                     </div>
                     
+                    <hr class="separator-full">
+
+                    <div class="profile-stats-area">
+                        <div class="stat-col">
+                            <div class="stat-label">recados</div>
+                            <div class="stat-data"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMzMzIj48cGF0aCBkPSJNMTQgMkg2Yy0xLjEgMC0xLjk5LjktMS45OSAyTDQgMjBjMCAxLjEuODkgMiAxLjk5IDJIMThjMS4xIDAgMi0uOSAyLTJWOGwtNi02em0yIDE2SDh2LTJoOHYyem0wLTRIOHYtMmg4djJ6bS0zLTVWMy41TDE4LjUgOUgxM3oiLz48L3N2Zz4="> 0</div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-label">fotos</div>
+                            <div class="stat-data"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMzMzIj48cGF0aCBkPSJNMjAgNGgtMy4xN0wxNSAySDlMNy4xNyA0SDRjLTEuMSAwLTIgLjktMiAydjEyYzAgMS4xLjkgMiAyIDJoMTZjMS4xIDAgMi0uOSAyLTJWNmMwLTEuMS0uOS0yLTItMnptLTggMTNjLTIuNzYgMC01LTIuMjQtNS01czIuMjQtNSA1LTUgNSAyLjI0IDUgNS0yLjI0IDUgNSA1eiIvPjwvc3ZnPg=="> 0</div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-label">vídeos</div>
+                            <div class="stat-data"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMzMzIj48cGF0aCBkPSJNMTggNGwyIDRoLTNsLTItNGgtMmwyIDRoLTNsLTItNEg4bDIgNEg3TDUgNEg0Yy0xLjEgMC0xLjk5LjktMS45OSAyTDIgMThjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY0aC00eiIvPjwvc3ZnPg=="> 0</div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-label">fãs</div>
+                            <div class="stat-data"><span style="color: gold;">⭐</span> 0</div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-label">confiável</div>
+                            <div class="rating-box" data-type="smile">
+                                <span class="rate-icon">🙂</span><span class="rate-icon">🙂</span><span class="rate-icon">🙂</span>
+                            </div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-label">legal</div>
+                            <div class="rating-box" data-type="cube">
+                                <span class="rate-icon cube"></span><span class="rate-icon cube"></span><span class="rate-icon cube"></span>
+                            </div>
+                        </div>
+                        <div class="stat-col">
+                            <div class="stat-label">sexy</div>
+                            <div class="rating-box" data-type="heart">
+                                <span class="rate-icon">❤️</span><span class="rate-icon">❤️</span><span class="rate-icon">❤️</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-tabs-container">
+                        <div class="profile-tab active" id="tab-social">social</div>
+                        <div class="profile-tab" id="tab-prof">profissional</div>
+                    </div>
+                    <div class="profile-tab-line"></div>
+
                     <div class="profile-data">
+                        <div class="data-row">
+                            <span class="label">sexo:</span>
+                            <span class="value" id="profile-sex">feminino</span>
+                        </div>
                         <div class="data-row">
                             <span class="label">relacionamento:</span>
                             <span class="value" id="profile-rel">solteiro(a)</span>
@@ -150,12 +225,16 @@
                     </div>
                 </div>
 
+                <div class="card testimonials-card">
+                    <h2>meus depoimentos</h2>
+                    <div id="testimonials-preview"></div>
+                    <a href="testimonials.html" class="view-all">ver todos os depoimentos</a>
+                </div>
+
                 <div class="card scraps-card">
                     <h2>meus recados recentes</h2>
-                    <div class="scrap-item">
-                        <strong>João:</strong> "Passando para deixar um scrap e ganhar um de volta! haha"
-                    </div>
-                    <a href="#" class="view-all">ver todos os recados</a>
+                    <div id="scraps-preview"></div>
+                    <a href="scraps.html" class="view-all">ver todos os recados</a>
                 </div>
             </section>
 
@@ -216,7 +295,7 @@
         </div>
 
         <footer class="orkut-footer">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fd/Orkut_logo.gif" alt="orkut" class="logo">
+            <img src="assets/orkut-logo.png" alt="orkut" class="logo">
             <div class="footer-links">
                 <a href="#">Sobre o orkut</a> |
                 <a href="#">novidades</a> |
@@ -228,5 +307,16 @@
         </footer>
     </main>
 
+    <!-- Modal de Resposta -->
+    <div id="reply-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 style="margin-top: 0;">Responder para <span id="reply-author-name"></span></h3>
+            <textarea id="reply-message" class="edit-input" rows="5" placeholder="Escreva sua resposta aqui..." style="margin: 10px 0;"></textarea>
+            <div style="text-align: right;">
+                <button id="send-reply-btn" class="orkut-btn">Enviar resposta</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orkut - Depoimentos</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="orkut-header">
+        <div class="header-content">
+            <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
+            <nav class="main-nav">
+                <a href="index.html">Início</a>
+                <a href="index.html">Perfil</a>
+                <a href="scraps.html">Página de recados</a>
+                <a href="#">Amigos</a>
+                <a href="#">Comunidades</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="pesquisa do orkut">
+                <button>🔍</button>
+            </div>
+            <div class="user-info">
+                <span>malu@orkut.com</span> | <a href="#">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        <div class="orkut-grid">
+            
+            <aside class="left-column">
+                <div class="card profile-pic-card">
+                    <div class="profile-frame">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/150px-Default_pfp.svg.png" alt="Foto de Perfil" id="profile-image-sidebar">
+                    </div>
+                    <p class="user-name" id="sidebar-name">Malu</p>
+                    <div style="margin-top: 15px;">
+                        <a href="index.html" style="color: var(--orkut-text-blue); text-decoration: underline;">voltar ao perfil</a>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="center-column">
+                <div class="card">
+                    <h2>Meus depoimentos</h2>
+                    
+                    <div id="testimonials-list-full">
+                        <!-- Lista carregada via JS -->
+                        <p>Carregando depoimentos...</p>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="right-column">
+                <div class="card friends-card">
+                    <div class="card-header">
+                        <h3>amigos</h3>
+                    </div>
+                    <div class="friends-grid">
+                        <div class="friend-item"><img src="https://picsum.photos/60?random=1"><span>Pedro</span></div>
+                        <div class="friend-item"><img src="https://picsum.photos/60?random=2"><span>Ana</span></div>
+                        <div class="friend-item"><img src="https://picsum.photos/60?random=3"><span>Carlos</span></div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <footer class="orkut-footer">
+            <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
+            <div class="footer-links">
+                <a href="#">Sobre o orkut</a> |
+                <a href="#">novidades</a> |
+                <a href="#">centro de segurança</a> |
+                <a href="#">privacidade</a> |
+                <a href="#">termos de uso</a> |
+                <a href="#">ajuda</a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Modal de Resposta -->
+    <div id="reply-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 style="margin-top: 0;">Responder para <span id="reply-author-name"></span></h3>
+            <textarea id="reply-message" class="edit-input" rows="5" placeholder="Escreva sua resposta aqui..." style="margin: 10px 0;"></textarea>
+            <div style="text-align: right;">
+                <button id="send-reply-btn" class="orkut-btn">Enviar resposta</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

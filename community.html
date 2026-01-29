@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>orkut - Comunidade</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <header class="orkut-header">
+        <div class="header-content">
+            <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
+            <nav class="main-nav">
+                <a href="index.html">Início</a>
+                <a href="index.html">Perfil</a>
+                <a href="#">Página de recados</a>
+                <a href="#">Amigos</a>
+                <a href="#">Comunidades</a>
+            </nav>
+            <div class="search-bar">
+                <input type="text" placeholder="pesquisa do orkut">
+                <button>🔍</button>
+            </div>
+            <div class="user-info">
+                <span>malu@orkut.com</span> | <a href="#">Sair</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        <div class="orkut-grid">
+            
+            <aside class="left-column">
+                <div class="card profile-pic-card">
+                    <div class="profile-frame">
+                        <img src="" alt="Comunidade" id="comm-image">
+                    </div>
+                    <p class="user-name" id="comm-name-sidebar">Carregando...</p>
+                    <ul class="profile-menu">
+                        <li><a href="#">participar</a></li>
+                        <li><a href="#">fórum</a></li>
+                        <li><a href="#">enquetes</a></li>
+                        <li><a href="#">membros</a></li>
+                        <li><a href="#">eventos</a></li>
+                    </ul>
+                    <div style="margin-top: 15px;">
+                        <a href="index.html" style="color: var(--orkut-text-blue); text-decoration: underline;">voltar ao perfil</a>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="center-column">
+                <div class="card welcome-card">
+                    <div class="header-with-action">
+                        <h1 id="comm-name-main">Carregando...</h1>
+                        <button id="join-comm-btn" class="orkut-btn">participar</button>
+                    </div>
+                    
+                    <div class="profile-data">
+                        <div class="data-row">
+                            <span class="label">idioma:</span>
+                            <span class="value">Português</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">categoria:</span>
+                            <span class="value">Diversão</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">dono:</span>
+                            <span class="value">Anônimo</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="label">tipo:</span>
+                            <span class="value">Pública</span>
+                        </div>
+                        <div class="data-row" style="padding: 10px; display: block;">
+                            <p>Bem-vindo à comunidade! Aqui discutimos assuntos relacionados ao título. Respeite as regras e divirta-se.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>fórum</h2>
+                    <div style="padding: 10px;">
+                        <p>Nenhum tópico recente.</p>
+                        <button class="orkut-btn" style="margin-top: 10px;">Criar tópico</button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="right-column">
+                <div class="card friends-card">
+                    <div class="card-header">
+                        <h3>membros (1.2k)</h3>
+                    </div>
+                    <div class="friends-grid">
+                        <div class="friend-item"><img src="https://picsum.photos/60?random=100"><span>João</span></div>
+                        <div class="friend-item"><img src="https://picsum.photos/60?random=101"><span>Maria</span></div>
+                        <div class="friend-item"><img src="https://picsum.photos/60?random=102"><span>José</span></div>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">ver todos</a>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+
+        <footer class="orkut-footer">
+            <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
+            <div class="footer-links">
+                <a href="#">Sobre o orkut</a> |
+                <a href="#">novidades</a> |
+                <a href="#">centro de segurança</a> |
+                <a href="#">privacidade</a> |
+                <a href="#">termos de uso</a> |
+                <a href="#">ajuda</a>
+            </div>
+        </footer>
+    </main>
+
+</body>
+</html>
