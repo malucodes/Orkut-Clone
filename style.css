@@ -61,6 +61,15 @@ body {
     border-radius: 2px;
 }
 
+.user-info span {
+    display: inline-block;
+    max-width: 150px; /* Limita a largura para forçar o truncamento */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: bottom;
+}
+
 /* Layout Principal */
 .main-wrapper {
     max-width: 960px;

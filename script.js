@@ -48,6 +48,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (sidebarName) sidebarName.textContent = nameToUse;
 
+        // Atualiza o email no header
+        const headerEmail = document.querySelector('.user-info span');
+        if (headerEmail) {
+            // Remove acentos e substitui espaços por '123'
+            const cleanName = nameToUse.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+            const emailUser = cleanName.trim().split(/\s+/).join('123').toLowerCase();
+            const fullEmail = `${emailUser}@orkut.com`;
+            headerEmail.textContent = fullEmail;
+            headerEmail.title = fullEmail;
+        }
+
         const mainSex = document.getElementById('profile-sex');
         const sidebarSex = document.getElementById('sidebar-sex');
         if (mainSex && sidebarSex) sidebarSex.textContent = mainSex.textContent || 'sexo';
@@ -69,6 +80,29 @@ document.addEventListener('DOMContentLoaded', function() {
             const isEditing = editBtn.getAttribute('data-editing') === 'true';
 
             if (isEditing) {
+                // Validação do Nome
+                const nameEl = document.getElementById('profile-name');
+                const nameInput = nameEl ? nameEl.querySelector('.edit-input') : null;
+
+                if (nameInput) {
+                    const nameVal = nameInput.value.trim();
+                    
+                    // 1. Regex: Permite apenas letras (incluindo acentos) e espaços
+                    // \u00C0-\u00FF cobre caracteres acentuados comuns do português
+                    const namePattern = /^[a-zA-Z\u00C0-\u00FF\s]+$/;
+                    
+                    if (!namePattern.test(nameVal)) {
+                        alert('O nome deve conter apenas letras e espaços.');
+                        nameInput.focus();
+                        return; // Impede o salvamento
+                    }
+
+                    // 2. Validação do tamanho do email gerado
+                    const cleanName = nameVal.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+                    const emailUser = cleanName.split(/\s+/).join('123').toLowerCase();
+
+                }
+
                 // Validação da Data de Nascimento
                 const birthEl = document.getElementById('profile-birth');
                 const birthInput = birthEl ? birthEl.querySelector('.edit-input') : null;
