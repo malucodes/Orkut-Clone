@@ -1,197 +1,250 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const editBtn = document.getElementById('edit-profile-btn');
+    const $ = (id) => document.getElementById(id);
+    const qs = (sel) => document.querySelector(sel);
+    const setTxt = (id, txt) => { const el = $(id); if(el) el.textContent = txt; };
+    const storage = {
+        get: (k, d) => sessionStorage.getItem(k) || d,
+        set: (k, v) => sessionStorage.setItem(k, v),
+        getJson: (k, d) => JSON.parse(sessionStorage.getItem(k)) || d,
+        setJson: (k, v) => sessionStorage.setItem(k, JSON.stringify(v))
+    };
+
+    const editBtn = $('edit-profile-btn');
     
-    // Mapeamento dos campos que podem ser editados
-    // id: ID do elemento HTML
-    // type: tipo de input a ser criado (input simples ou textarea para textos longos)
+    const statusInput = qs('.status-box input');
+    if (statusInput) {
+        const statusSpan = document.createElement('span');
+        Object.assign(statusSpan.style, { flexGrow: '1', padding: '3px', minHeight: '20px', border: '1px solid transparent' });
+        statusSpan.id = 'profile-status';
+        const placeholderText = statusInput.getAttribute('placeholder') || "Qual é a frase do seu perfil?";
+        let currentStatus = storage.get('profile-status');
+        
+        if (!currentStatus) {
+            statusSpan.textContent = placeholderText;
+            statusSpan.classList.add('placeholder-text');
+            Object.assign(statusSpan.style, { color: '#999', borderColor: '#ccc' });
+        } else {
+            statusSpan.textContent = currentStatus;
+        }
+        statusInput.parentNode.replaceChild(statusSpan, statusInput);
+    }
+
     const fields = [
-        { id: 'profile-name', type: 'input' },
-        { id: 'profile-sex', type: 'input' },
-        { id: 'profile-rel', type: 'input' },
-        { id: 'profile-birth', type: 'input' },
-        { id: 'profile-age', type: 'input', onlyNumbers: true },
-        { id: 'profile-interests', type: 'input' },
+        { id: 'profile-status', type: 'input' },
         { id: 'profile-bio', type: 'textarea' },
-        { id: 'profile-children', type: 'input' },
-        { id: 'profile-ethnicity', type: 'input' },
-        { id: 'profile-humor', type: 'input' },
-        { id: 'profile-sexual', type: 'input' },
-        { id: 'profile-style', type: 'input' },
-        { id: 'profile-smoke', type: 'input' },
-        { id: 'profile-drink', type: 'input' },
-        { id: 'profile-pets', type: 'input' },
+        { id: 'profile-name', type: 'input' },
+        { id: 'profile-sex', type: 'select', options: ['Masculino', 'Feminino', 'Outro'] },
+        { id: 'profile-rel', type: 'select', options: ['Solteiro(a)', 'Casado(a)', 'Namorando', 'Enrolado(a)', 'Divorciado(a)', 'Viúvo(a)'] },
+        { id: 'profile-birth', type: 'date' },
+        { id: 'profile-age', type: 'input', onlyNumbers: true },
+        { id: 'profile-interests', type: 'select', options: ['Música', 'Esportes', 'Filmes', 'Tecnologia', 'Moda', 'Viagens', 'Games'] },
+        { id: 'profile-children', type: 'select', options: ['Não tenho', 'Tenho', 'Quero ter', 'Não quero ter'] },
+        { id: 'profile-ethnicity', type: 'select', options: ['Branca', 'Negra', 'Parda', 'Amarela', 'Indígena', 'Outra'] },
+        { id: 'profile-humor', type: 'select', options: ['Bem humorado', 'Sério', 'Sarcástico', 'Tímido', 'Extrovertido'] },
+        { id: 'profile-sexual', type: 'select', options: ['Heterossexual', 'Homossexual', 'Bissexual', 'Assexual', 'Outro'] },
+        { id: 'profile-style', type: 'select', options: ['Casual', 'Social', 'Alternativo', 'Esportivo', 'Geek'] },
+        { id: 'profile-smoke', type: 'select', options: ['Não fumo', 'Fumo socialmente', 'Fumo regularmente'] },
+        { id: 'profile-drink', type: 'select', options: ['Não bebo', 'Bebo socialmente', 'Bebo regularmente'] },
+        { id: 'profile-pets', type: 'select', options: ['Gosto de animais', 'Não gosto de animais', 'Tenho animais'] },
         { id: 'profile-live', type: 'input' },
         { id: 'profile-hometown', type: 'input' },
         { id: 'profile-web', type: 'input' },
-        { id: 'profile-passions', type: 'input' },
-        { id: 'profile-sports', type: 'input' },
-        { id: 'profile-activities', type: 'input' },
+        { id: 'profile-passions', type: 'select', options: ['Viajar', 'Comer', 'Dormir', 'Estudar', 'Trabalhar', 'Arte'] },
+        { id: 'profile-sports', type: 'select', options: ['Futebol', 'Vôlei', 'Basquete', 'Natação', 'Corrida', 'Nenhum'] },
+        { id: 'profile-activities', type: 'select', options: ['Ler', 'Assistir TV', 'Sair com amigos', 'Jogar', 'Cozinhar'] },
         { id: 'profile-country', type: 'input' }
     ];
 
-    // Carregar informações salvas no LocalStorage ao abrir a página
+    const bioField = $('profile-bio');
+    if (bioField) {
+        const bioRow = bioField.closest('.data-row');
+        if (bioRow && bioRow.parentElement) bioRow.parentElement.prepend(bioRow);
+    }
+
     fields.forEach(field => {
-        const el = document.getElementById(field.id);
+        const el = $(field.id);
         if (el) {
-            const savedValue = localStorage.getItem(field.id);
-            el.textContent = savedValue || '';
+            const savedValue = storage.get(field.id);
+            el.textContent = savedValue ? savedValue : (field.id === 'profile-name' ? 'usuario' : '');
         }
     });
 
-    // Função para sincronizar dados da lateral com o card principal
     function updateSidebar() {
-        // Tenta pegar do elemento principal (se estiver na home) ou do storage
-        const mainName = document.getElementById('profile-name');
-        const sidebarName = document.getElementById('sidebar-name');
-        const storedName = localStorage.getItem('profile-name') || 'Malu';
-        const nameToUse = mainName ? mainName.textContent : storedName;
+        const nameToUse = $('profile-name')?.textContent || storage.get('profile-name', 'usuario');
+        setTxt('sidebar-name', nameToUse);
 
-        if (sidebarName) sidebarName.textContent = nameToUse;
-
-        // Atualiza o email no header
-        const headerEmail = document.querySelector('.user-info span');
+        const headerEmail = qs('.user-info span');
         if (headerEmail) {
-            // Remove acentos e substitui espaços por '123'
             const cleanName = nameToUse.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
             const emailUser = cleanName.trim().split(/\s+/).join('123').toLowerCase();
-            const fullEmail = `${emailUser}@orkut.com`;
-            headerEmail.textContent = fullEmail;
-            headerEmail.title = fullEmail;
+            headerEmail.textContent = headerEmail.title = `${emailUser}@orkut.com`;
         }
 
-        const mainSex = document.getElementById('profile-sex');
-        const sidebarSex = document.getElementById('sidebar-sex');
-        if (mainSex && sidebarSex) sidebarSex.textContent = mainSex.textContent || 'sexo';
-
-        const mainRel = document.getElementById('profile-rel');
-        const sidebarRel = document.getElementById('sidebar-rel');
-        if (mainRel && sidebarRel) sidebarRel.textContent = mainRel.textContent || 'relacionamento';
-
-        const mainCity = document.getElementById('profile-hometown');
-        const mainCountry = document.getElementById('profile-country');
-        const sidebarLoc = document.getElementById('sidebar-loc');
-        if (sidebarLoc) sidebarLoc.textContent = `${mainCity ? mainCity.textContent : ''}, ${mainCountry ? mainCountry.textContent : ''}`;
+        setTxt('sidebar-sex', $('profile-sex')?.textContent || 'sexo');
+        setTxt('sidebar-rel', $('profile-rel')?.textContent || 'relacionamento');
+        
+        const loc = `${$('profile-hometown')?.textContent || ''}, ${$('profile-country')?.textContent || ''}`;
+        setTxt('sidebar-loc', loc === ', ' ? '' : loc);
     }
     updateSidebar();
 
+    const luckPhrases = [
+        "A sorte favorece os audazes.",
+        "Hoje é um bom dia para começar algo novo.",
+        "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
+        "Acredite em milagres, mas não dependa deles.",
+        "A vida trará coisas boas se tiveres paciência.",
+        "Demonstre amor e alegria em todas as oportunidades.",
+        "Não compense na ira o que lhe falta na razão.",
+        "Defeitos e virtudes são apenas dois lados da mesma moeda.",
+        "A maior de todas as torres começa no solo.",
+        "Não há que ser forte. Há que ser flexível."
+    ];
+
+    const luckEl = $('luck-of-day');
+    if (luckEl) {
+        const randomPhrase = luckPhrases[Math.floor(Math.random() * luckPhrases.length)];
+        luckEl.innerHTML = `<span style="color: #cc0000; font-weight: bold;">Sorte do dia:</span> ${randomPhrase}`;
+    }
+
+    ['stat-photos', 'stat-videos', 'stat-fans'].forEach(id => {
+        const el = $(id);
+        if (el) {
+            let val = storage.get(id);
+            if (!val) {
+                val = Math.floor(Math.random() * 250);
+                storage.set(id, val);
+            }
+            el.textContent = val;
+        }
+    });
+
     if (editBtn) {
         editBtn.addEventListener('click', function() {
-            // Verifica se estamos no modo de edição checando um atributo customizado
             const isEditing = editBtn.getAttribute('data-editing') === 'true';
 
             if (isEditing) {
-                // Validação do Nome
-                const nameEl = document.getElementById('profile-name');
+                const nameEl = $('profile-name');
                 const nameInput = nameEl ? nameEl.querySelector('.edit-input') : null;
 
                 if (nameInput) {
                     const nameVal = nameInput.value.trim();
                     
-                    // 1. Regex: Permite apenas letras (incluindo acentos) e espaços
-                    // \u00C0-\u00FF cobre caracteres acentuados comuns do português
                     const namePattern = /^[a-zA-Z\u00C0-\u00FF\s]+$/;
                     
                     if (!namePattern.test(nameVal)) {
                         alert('O nome deve conter apenas letras e espaços.');
                         nameInput.focus();
-                        return; // Impede o salvamento
-                    }
-
-                    // 2. Validação do tamanho do email gerado
-                    const cleanName = nameVal.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-                    const emailUser = cleanName.split(/\s+/).join('123').toLowerCase();
-
-                }
-
-                // Validação da Data de Nascimento
-                const birthEl = document.getElementById('profile-birth');
-                const birthInput = birthEl ? birthEl.querySelector('.edit-input') : null;
-
-                if (birthInput && birthInput.value.trim() !== '') {
-                    const datePattern = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-                    const match = birthInput.value.match(datePattern);
-                    let isValid = false;
-
-                    if (match) {
-                        const d = parseInt(match[1], 10);
-                        const m = parseInt(match[2], 10);
-                        const y = parseInt(match[3], 10);
-                        const date = new Date(y, m - 1, d);
-                        if (date.getFullYear() === y && date.getMonth() === m - 1 && date.getDate() === d) {
-                            isValid = true;
-                        }
-                    }
-
-                    if (!isValid) {
-                        alert('Data de nascimento inválida! Por favor, use o formato DD/MM/AAAA.');
-                        birthInput.focus();
-                        return; // Impede o salvamento se a data for inválida
+                        return;
                     }
                 }
 
-                // --- AÇÃO DE SALVAR ---
+                const countryEl = $('profile-country');
+                const countryInput = countryEl ? countryEl.querySelector('.edit-input') : null;
+
+                if (countryInput && countryInput.value.trim() === '') {
+                    alert('O campo "país" não pode ficar vazio!');
+                    countryInput.focus();
+                    return;
+                }
+
                 
                 fields.forEach(field => {
-                    const el = document.getElementById(field.id);
+                    const el = $(field.id);
                     const input = el.querySelector('.edit-input');
                     
-                    // Se encontrar o input, pega o valor e coloca de volta como texto
                     if (input) {
-                        el.textContent = input.value;
-                        localStorage.setItem(field.id, input.value);
+                        let val = input.value;
+                        
+                        if (field.type === 'date' && val) {
+                            const parts = val.split('-');
+                            if (parts.length === 3) {
+                                val = `${parts[2]}/${parts[1]}/${parts[0]}`;
+                            }
+                        }
+
+                        if (field.id === 'profile-status') {
+                            if (!val) {
+                                el.textContent = "Qual é a frase do seu perfil?";
+                                el.classList.add('placeholder-text');
+                                Object.assign(el.style, { color: '#999', borderColor: '#ccc' });
+                            } else {
+                                el.textContent = val;
+                                el.classList.remove('placeholder-text');
+                                Object.assign(el.style, { color: '', borderColor: 'transparent' });
+                            }
+                        } else el.textContent = val;
+                        
+                        storage.set(field.id, val);
                     }
                 });
                 
                 updateSidebar();
 
-                // Restaura o botão
                 editBtn.textContent = 'Editar Perfil';
                 editBtn.setAttribute('data-editing', 'false');
 
             } else {
-                // --- AÇÃO DE EDITAR ---
 
                 fields.forEach(field => {
-                    const el = document.getElementById(field.id);
-                    const text = el.textContent;
+                    const el = $(field.id);
+                    let text = el.textContent;
+                    
+                    if (field.id === 'profile-status' && el.classList.contains('placeholder-text')) {
+                        text = '';
+                    }
+
+                    if (field.id === 'profile-status') {
+                        el.style.borderColor = 'transparent';
+                    }
                     
                     let inputHtml = '';
                     if (field.type === 'textarea') {
-                        // Usa textarea para a bio, pois pode ser grande
                         inputHtml = `<textarea class="edit-input" rows="4" placeholder="escreva aqui...">${text}</textarea>`;
+                    } else if (field.type === 'select') {
+                        const optionsHtml = field.options.map(opt => 
+                            `<option value="${opt}" ${text === opt ? 'selected' : ''}>${opt}</option>`
+                        ).join('');
+                        inputHtml = `<select class="edit-input">${optionsHtml}</select>`;
+                    } else if (field.type === 'date') {
+                        let dateVal = '';
+                        if (text && text.includes('/')) {
+                            const parts = text.split('/');
+                            if (parts.length === 3) dateVal = `${parts[2]}-${parts[1]}-${parts[0]}`;
+                        }
+                        inputHtml = `<input type="date" class="edit-input" value="${dateVal}">`;
                     } else {
-                        // Usa input normal para os outros campos
                         const onInputAttr = field.onlyNumbers ? 'oninput="this.value = this.value.replace(/[^0-9]/g, \'\')"' : '';
-                        inputHtml = `<input type="text" class="edit-input" value="${text}" placeholder="escreva aqui..." ${onInputAttr}>`;
+                        let ph = "escreva aqui...";
+                        let extraAttrs = '';
+
+                        if (field.id === 'profile-status') {
+                            ph = "Qual é a frase do seu perfil?";
+                            extraAttrs = 'maxlength="140"';
+                        }
+                        inputHtml = `<input type="text" class="edit-input" value="${text}" placeholder="${ph}" ${onInputAttr} ${extraAttrs}>`;
                     }
                     
                     el.innerHTML = inputHtml;
                 });
 
-                // Muda o botão para "Salvar"
                 editBtn.textContent = 'Salvar';
                 editBtn.setAttribute('data-editing', 'true');
             }
         });
     }
 
-    // Funcionalidade para trocar a foto de perfil
-    const profileImage = document.getElementById('profile-image');
-    const profileUpload = document.getElementById('profile-upload');
+    const profileImage = $('profile-image');
+    const profileUpload = $('profile-upload');
+    
+    const savedImageUrl = storage.get('profile-image-url');
+    if (savedImageUrl) {
+        if (profileImage) profileImage.src = savedImageUrl;
+        const sidebarImage = document.getElementById('profile-image-sidebar');
+        if (sidebarImage) sidebarImage.src = savedImageUrl;
+    }
 
     if (profileImage && profileUpload) {
-        // Carregar imagem salva
-        const savedImageUrl = localStorage.getItem('profile-image-url');
-        if (savedImageUrl) {
-            profileImage.src = savedImageUrl;
-        }
-        
-        // Sincronizar imagem da sidebar nas outras páginas
-        const sidebarImage = document.getElementById('profile-image-sidebar');
-        if (sidebarImage && savedImageUrl) {
-            sidebarImage.src = savedImageUrl;
-        }
-
         profileImage.addEventListener('click', function() {
             profileUpload.click();
         });
@@ -203,10 +256,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 reader.onload = function(event) {
                     const imageUrl = event.target.result;
                     profileImage.src = imageUrl;
+                    const sidebarImage = $('profile-image-sidebar');
+                    if (sidebarImage) sidebarImage.src = imageUrl;
                     try {
-                        localStorage.setItem('profile-image-url', imageUrl);
+                        storage.set('profile-image-url', imageUrl);
                     } catch (error) {
-                        console.error('Imagem muito grande para o LocalStorage', error);
+                        console.error('Imagem muito grande para o SessionStorage', error);
                         alert('Imagem carregada! (Nota: Imagens muito grandes podem não salvar ao recarregar a página neste protótipo).');
                     }
                 };
@@ -215,8 +270,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Funcionalidade para expandir lista de amigos
-    // Dados fixos para não repetir pessoas
     const extraFriendsData = [
         { name: 'Lucas', img: 'https://picsum.photos/60?random=4' },
         { name: 'Fernanda', img: 'https://picsum.photos/60?random=5' },
@@ -227,8 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
     let friendsExpanded = false;
     
-    // Atualizar contador de amigos com o total real (HTML inicial + Extras)
-    const friendsCountEl = document.getElementById('friends-count');
+    const friendsCountEl = $('friends-count');
     if (friendsCountEl) {
         const initialFriendsCount = document.querySelectorAll('.friend-item').length;
         const totalFriends = initialFriendsCount + extraFriendsData.length;
@@ -239,10 +291,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (viewAllFriendsBtn) {
         viewAllFriendsBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            const friendsGrid = document.querySelector('.friends-grid');
+            const friendsGrid = qs('.friends-grid');
             
             if (!friendsExpanded) {
-                // Adicionar amigos
                 extraFriendsData.forEach(friend => {
                     const friendHtml = `<div class="friend-item extra-item"><img src="${friend.img}"><span>${friend.name}</span></div>`;
                     friendsGrid.insertAdjacentHTML('beforeend', friendHtml);
@@ -250,39 +301,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 viewAllFriendsBtn.textContent = 'voltar';
                 friendsExpanded = true;
             } else {
-                // Remover amigos adicionados
                 const extras = friendsGrid.querySelectorAll('.extra-item');
                 extras.forEach(item => item.remove());
                 viewAllFriendsBtn.textContent = 'ver todos';
                 friendsExpanded = false;
             }
-            // Não atualizamos o texto do contador aqui para manter o número total visível
         });
     }
 
-    // Funcionalidade para expandir comunidades
     let allCommunities = [];
     let commExpanded = false;
-    const commList = document.querySelector('.comm-list');
-    const viewAllCommBtn = document.getElementById('view-all-comm');
+    const commList = qs('.comm-list');
+    const viewAllCommBtn = $('view-all-comm');
 
-    // Carregar comunidades do JSON
     fetch('communities.json')
         .then(response => response.json())
         .then(data => {
             allCommunities = data;
             
-            // Atualiza o contador com o total do JSON
-            const commCountEl = document.getElementById('comm-count');
+            const commCountEl = $('comm-count');
             if (commCountEl) {
                 commCountEl.textContent = `comunidades (${allCommunities.length})`;
             }
             
-            // Renderiza as 9 primeiras (simulando a visualização inicial)
-            renderCommunities(allCommunities.slice(0, 9));
+            renderCommunities(allCommunities.slice(0, 3));
 
-            // Lógica para página de detalhes da comunidade
-            const commNameMain = document.getElementById('comm-name-main');
+            const commNameMain = $('comm-name-main');
             if (commNameMain) {
                 const urlParams = new URLSearchParams(window.location.search);
                 const commId = parseInt(urlParams.get('id'));
@@ -291,25 +335,55 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (community) {
                     commNameMain.textContent = community.name;
                     document.title = `orkut - ${community.name}`;
-                    const commImage = document.getElementById('comm-image');
+                    const commImage = $('comm-image');
                     if (commImage) commImage.src = community.img;
-                    const commNameSidebar = document.getElementById('comm-name-sidebar');
+                    const commNameSidebar = $('comm-name-sidebar');
                     if (commNameSidebar) commNameSidebar.textContent = community.name;
+                    const commDesc = $('comm-description');
+                    if (commDesc) commDesc.textContent = community.description;
+                    const commMembers = $('comm-members-count');
+                    if (commMembers) commMembers.textContent = community.members.toLocaleString('pt-BR');
 
-                    // Botão de Participar/Sair
-                    const joinBtn = document.getElementById('join-comm-btn');
+                    const cards = document.querySelectorAll('.center-column .card');
+                    let forumContentDiv = null;
+                    cards.forEach(card => {
+                        const h2 = card.querySelector('h2');
+                        if (h2 && h2.textContent.toLowerCase().includes('fórum')) {
+                            forumContentDiv = card.querySelector('div[style="padding: 10px;"]');
+                        }
+                    });
+
+                    if (forumContentDiv && community.topics && community.topics.length > 0) {
+                        let topicsHtml = '<table style="width:100%; border-collapse:collapse; font-size:11px; margin-bottom:10px;">';
+                        topicsHtml += '<tr style="background:#d4e1f5; text-align:left;"><th style="padding:4px;">Tópico</th><th style="padding:4px;">Autor</th><th style="padding:4px; text-align:center;">Resps.</th><th style="padding:4px; text-align:right;">Última postagem</th></tr>';
+                        
+                        community.topics.forEach((topic, index) => {
+                            const bg = index % 2 === 0 ? '#f0f5fa' : '#ffffff';
+                            topicsHtml += `<tr style="background:${bg};">
+                                <td style="padding:4px;"><a href="#" style="color:#003399; text-decoration:none;">${topic.title}</a></td>
+                                <td style="padding:4px;"><a href="#" style="color:#003399; text-decoration:none;">${topic.author}</a></td>
+                                <td style="padding:4px; text-align:center;">${topic.replies}</td>
+                                <td style="padding:4px; text-align:right; color:#666;">${topic.date}</td>
+                            </tr>`;
+                        });
+                        topicsHtml += '</table>';
+                        topicsHtml += '<button class="orkut-btn">Criar tópico</button>';
+                        forumContentDiv.innerHTML = topicsHtml;
+                    }
+
+                    const joinBtn = $('join-comm-btn');
                     if (joinBtn) {
                         const storageKey = `joined_comm_${commId}`;
-                        const isJoined = localStorage.getItem(storageKey) === 'true';
+                        const isJoined = storage.get(storageKey) === 'true';
                         joinBtn.textContent = isJoined ? 'sair' : 'participar';
 
                         joinBtn.addEventListener('click', function() {
                             if (joinBtn.textContent === 'participar') {
                                 joinBtn.textContent = 'sair';
-                                localStorage.setItem(storageKey, 'true');
+                                storage.set(storageKey, 'true');
                             } else {
                                 joinBtn.textContent = 'participar';
-                                localStorage.setItem(storageKey, 'false');
+                                storage.set(storageKey, 'false');
                             }
                         });
                     }
@@ -320,15 +394,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderCommunities(items) {
         if (!commList) return;
-        commList.innerHTML = ''; // Limpa a lista atual
+        commList.innerHTML = '';
         
         items.forEach(comm => {
-            // Cria o item com link para a página da comunidade
+            let memberCount = comm.members;
+            if (memberCount >= 1000) {
+                memberCount = Math.floor(memberCount / 1000) + 'k';
+            }
+
             const commHtml = `
                 <div class="comm-item">
                     <a href="community.html?id=${comm.id}" style="text-decoration: none;">
-                        <img src="${comm.img}" alt="${comm.name}">
-                        <span>${comm.name}</span>
+                        <img src="${comm.img}" alt="${comm.name}" title="${comm.description}">
+                        <span style="display:block; margin-bottom: 2px;">${comm.name}</span>
+                        <span style="color: #666; font-size: 9px;">(${memberCount})</span>
                     </a>
                 </div>`;
             commList.insertAdjacentHTML('beforeend', commHtml);
@@ -340,13 +419,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
 
             if (!commExpanded) {
-                // Mostrar todas
                 renderCommunities(allCommunities);
                 viewAllCommBtn.textContent = 'voltar';
                 commExpanded = true;
             } else {
-                // Mostrar apenas as 9 primeiras
-                renderCommunities(allCommunities.slice(0, 9));
+                renderCommunities(allCommunities.slice(0, 3));
                 viewAllCommBtn.textContent = 'ver todas';
                 commExpanded = false;
             }
@@ -357,8 +434,8 @@ document.addEventListener('DOMContentLoaded', function() {
     setupManageButton('manage-comm', '.comm-list', '.comm-item', 'comm');
 
     function setupManageButton(btnId, containerSelector, itemSelector, type) {
-        const btn = document.getElementById(btnId);
-        const container = document.querySelector(containerSelector);
+        const btn = $(btnId);
+        const container = qs(containerSelector);
 
         if (btn && container) {
             btn.addEventListener('click', function(e) {
@@ -371,9 +448,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     const item = e.target.closest(itemSelector);
                     if (item) {
                         item.remove();
-                        // Atualiza contagem visualmente apenas subtraindo 1
                         const countId = type === 'friends' ? 'friends-count' : 'comm-count';
-                        const countEl = document.getElementById(countId);
+                        const countEl = $(countId);
                         let currentText = countEl.textContent;
                         let currentNum = parseInt(currentText.match(/\d+/)[0]);
                         countEl.textContent = currentText.replace(currentNum, currentNum - 1);
@@ -383,15 +459,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Lógica para as avaliações (Confiável, Legal, Sexy)
     const ratingBoxes = document.querySelectorAll('.rating-box');
     ratingBoxes.forEach(box => {
         const icons = box.querySelectorAll('.rate-icon');
         icons.forEach((icon, index) => {
             icon.addEventListener('click', () => {
-                // Remove ativo de todos
                 icons.forEach(i => i.classList.remove('active'));
-                // Adiciona ativo até o índice clicado
                 for (let i = 0; i <= index; i++) {
                     icons[i].classList.add('active');
                 }
@@ -399,9 +472,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Lógica para as abas (Social / Profissional)
-    const tabSocial = document.getElementById('tab-social');
-    const tabProf = document.getElementById('tab-prof');
+    const tabSocial = $('tab-social');
+    const tabProf = $('tab-prof');
 
     if (tabSocial && tabProf) {
         function switchTab(activeTab, inactiveTab) {
@@ -413,13 +485,12 @@ document.addEventListener('DOMContentLoaded', function() {
         tabProf.addEventListener('click', () => switchTab(tabProf, tabSocial));
     }
 
-    // --- MODAL DE RESPOSTA ---
-    const modal = document.getElementById('reply-modal');
-    const closeModal = document.querySelector('.close-modal');
-    const replyAuthorName = document.getElementById('reply-author-name');
-    const replyMessage = document.getElementById('reply-message');
-    const sendReplyBtn = document.getElementById('send-reply-btn');
-    let replyContext = {}; // Armazena o contexto da resposta (tipo e id)
+    const modal = $('reply-modal');
+    const closeModal = qs('.close-modal');
+    const replyAuthorName = $('reply-author-name');
+    const replyMessage = $('reply-message');
+    const sendReplyBtn = $('send-reply-btn');
+    let replyContext = {};
 
     function openReplyModal(author, type, id) {
         replyContext = { type, id };
@@ -429,7 +500,6 @@ document.addEventListener('DOMContentLoaded', function() {
             modal.style.display = 'block';
             if (replyMessage) replyMessage.focus();
         } else {
-            // Fallback caso o modal não exista na página
             alert(`Responder para ${author}`);
         }
     }
@@ -451,154 +521,73 @@ document.addEventListener('DOMContentLoaded', function() {
             if (replyMessage && replyMessage.value.trim() !== '') {
                 const replyText = replyMessage.value;
                 const replyObj = {
-                    author: 'Malu', // Usuário logado
+                    author: 'usuario',
                     text: replyText,
                     date: new Date().toLocaleDateString('pt-BR')
                 };
 
-                if (replyContext.type === 'scrap') {
-                    const item = scraps.find(s => s.id == replyContext.id);
-                    if (item) {
-                        if (!item.replies) item.replies = [];
-                        item.replies.push(replyObj);
-                        saveScraps();
-                        renderScraps('scraps-preview', 2);
-                        renderScraps('scraps-list-full');
-                    }
-                } else if (replyContext.type === 'testimonial') {
-                    const item = testimonials.find(t => t.id == replyContext.id);
-                    if (item) {
-                        if (!item.replies) item.replies = [];
-                        item.replies.push(replyObj);
-                        saveTestimonials();
-                        renderTestimonials('testimonials-preview', 2);
-                        renderTestimonials('testimonials-list-full');
-                    }
+                const system = replyContext.type === 'scrap' ? Scraps : Testimonials;
+                const item = system.data.find(i => i.id == replyContext.id);
+                if (item) {
+                    if (!item.replies) item.replies = [];
+                    item.replies.push(replyObj);
+                    system.save();
+                    system.renderAll();
                 }
                 modal.style.display = 'none';
             }
         });
     }
 
-    // --- SISTEMA DE RECADOS (SCRAPS) ---
-    const defaultScraps = [
+    function createMessageSystem(key, defaultData, itemClass, typeName) {
+        let data = storage.getJson(key, defaultData);
+        const save = () => storage.setJson(key, data);
+        
+        const render = (containerId, limit = null) => {
+            const container = $(containerId);
+            if (!container) return;
+            container.innerHTML = '';
+            const list = limit ? data.slice(0, limit) : data;
+            
+            if (list.length === 0) {
+                container.innerHTML = '<p style="padding:10px; color:#666;">Nenhum item ainda.</p>';
+                return;
+            }
+
+            list.forEach(item => {
+                let repliesHtml = item.replies?.length ? `<div class="item-replies">${item.replies.map(r => `<div class="reply-item"><strong>${r.author}:</strong> ${r.text}</div>`).join('')}</div>` : '';
+                const dateHtml = item.date ? `<span style="font-size:9px; color:#999;">${item.date}</span>` : '';
+                const contentHtml = itemClass === 'scrap-item' 
+                    ? `<div style="display:flex; justify-content:space-between;"><strong>${item.author}:</strong>${dateHtml}</div><p style="margin-top:4px;">${item.text}</p>`
+                    : `<strong>${item.author}:</strong> "${item.text}"`;
+
+                const html = `<div class="${itemClass}">${contentHtml}${repliesHtml}${!limit ? `<div style="text-align:right; margin-top:5px;"><button class="orkut-btn reply-btn" data-author="${item.author}" data-id="${item.id}">responder</button></div>` : ''}</div>`;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+
+            if (!limit) {
+                container.querySelectorAll('.reply-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => openReplyModal(e.target.dataset.author, typeName, e.target.dataset.id));
+                });
+            }
+        };
+        return { data, save, render, renderAll: () => { render(`${typeName}s-preview`, 2); render(`${typeName}s-list-full`); } };
+    }
+
+    const Scraps = createMessageSystem('orkut_scraps', [
         { id: 1, author: 'João', text: 'Passando para deixar um scrap e ganhar um de volta! haha', date: '20/07/2006' },
         { id: 2, author: 'Ana', text: 'Adorei as fotos do fim de semana!', date: '19/07/2006' },
         { id: 3, author: 'Carlos', text: 'E aí, sumida! Quando vamos marcar aquele churrasco?', date: '18/07/2006' },
         { id: 4, author: 'Julia', text: 'Feliz aniversário atrasado! Tudo de bom!', date: '17/07/2006' },
         { id: 5, author: 'Pedro', text: 'Me aceita na comunidade lá.', date: '16/07/2006' }
-    ];
+    ], 'scrap-item', 'scrap');
+    Scraps.renderAll();
 
-    // Carregar ou iniciar
-    let scraps = JSON.parse(localStorage.getItem('orkut_scraps')) || defaultScraps;
-
-    function saveScraps() {
-        localStorage.setItem('orkut_scraps', JSON.stringify(scraps));
-    }
-
-    function renderScraps(containerId, limit = null) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        
-        container.innerHTML = '';
-        const list = limit ? scraps.slice(0, limit) : scraps;
-
-        if (list.length === 0) {
-            container.innerHTML = '<p style="padding:10px; color:#666;">Nenhum recado ainda.</p>';
-            return;
-        }
-
-        list.forEach(scrap => {
-            let repliesHtml = '';
-            if (scrap.replies && scrap.replies.length > 0) {
-                repliesHtml = '<div class="item-replies">';
-                scrap.replies.forEach(r => {
-                    repliesHtml += `<div class="reply-item"><strong>${r.author}:</strong> ${r.text}</div>`;
-                });
-                repliesHtml += '</div>';
-            }
-
-            const html = `
-                <div class="scrap-item">
-                    <div style="display:flex; justify-content:space-between;">
-                        <strong>${scrap.author}:</strong>
-                        <span style="font-size:9px; color:#999;">${scrap.date || ''}</span>
-                    </div>
-                    <p style="margin-top:4px;">${scrap.text}</p>
-                    ${repliesHtml}
-                    ${!limit ? `<div style="text-align:right; margin-top:5px;"><button class="orkut-btn reply-btn" data-author="${scrap.author}" data-id="${scrap.id}">responder</button></div>` : ''}
-                </div>
-            `;
-            container.insertAdjacentHTML('beforeend', html);
-        });
-
-        // Evento para botões de responder
-        if (!limit) {
-            container.querySelectorAll('.reply-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const author = e.target.getAttribute('data-author');
-                    const id = e.target.getAttribute('data-id');
-                    openReplyModal(author, 'scrap', id);
-                });
-            });
-        }
-    }
-
-    // Renderizar nas páginas
-    renderScraps('scraps-preview', 2); // Na home
-    renderScraps('scraps-list-full');  // Na página de recados
-
-    // --- SISTEMA DE DEPOIMENTOS ---
-    const defaultTestimonials = [
+    const Testimonials = createMessageSystem('orkut_testimonials', [
         { id: 1, author: 'Fernanda', text: 'Amiga, você é incrível! Saudades das nossas conversas intermináveis.' },
         { id: 2, author: 'Roberto', text: 'Profissional exemplar e uma pessoa de coração gigante.' },
         { id: 3, author: 'Lucas', text: 'Conheço há anos, super gente boa. Podem confiar!' },
         { id: 4, author: 'Mariana', text: 'Minha parceira de todas as horas. Amo muito!' }
-    ];
-
-    let testimonials = JSON.parse(localStorage.getItem('orkut_testimonials')) || defaultTestimonials;
-
-    function saveTestimonials() {
-        localStorage.setItem('orkut_testimonials', JSON.stringify(testimonials));
-    }
-
-    function renderTestimonials(containerId, limit = null) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        
-        container.innerHTML = '';
-        const list = limit ? testimonials.slice(0, limit) : testimonials;
-
-        list.forEach(testi => {
-            let repliesHtml = '';
-            if (testi.replies && testi.replies.length > 0) {
-                repliesHtml = '<div class="item-replies">';
-                testi.replies.forEach(r => {
-                    repliesHtml += `<div class="reply-item"><strong>${r.author}:</strong> ${r.text}</div>`;
-                });
-                repliesHtml += '</div>';
-            }
-
-            const html = `
-                <div class="testimonial-item">
-                    <strong>${testi.author}:</strong> "${testi.text}"
-                    ${repliesHtml}
-                    ${!limit ? `<div style="text-align:right; margin-top:5px;"><button class="orkut-btn reply-testi-btn" data-author="${testi.author}" data-id="${testi.id}">responder</button></div>` : ''}
-                </div>`;
-            container.insertAdjacentHTML('beforeend', html);
-        });
-
-        if (!limit) {
-            container.querySelectorAll('.reply-testi-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const author = e.target.getAttribute('data-author');
-                    const id = e.target.getAttribute('data-id');
-                    openReplyModal(author, 'testimonial', id);
-                });
-            });
-        }
-    }
-
-    renderTestimonials('testimonials-preview', 2);
-    renderTestimonials('testimonials-list-full');
+    ], 'testimonial-item', 'testimonial');
+    Testimonials.renderAll();
 });

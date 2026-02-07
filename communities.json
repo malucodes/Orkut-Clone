@@ -1,7 +1,15 @@
 [
-    { "id": 1, "name": "Eu nunca terminei uma borracha", "img": "assets/images/terminar-borracha.png", "description": "Para quem sempre perde a borracha antes do fim.", "members": 12054 },
+    { "id": 1, "name": "Eu nunca terminei uma borracha", "img": "assets/images/terminar-borracha.png", "description": "Para quem sempre perde a borracha antes do fim.", "members": 12054, "topics": [
+        { "title": "Onde elas vão parar?", "author": "Carlos", "replies": 42, "date": "22/07/2006" },
+        { "title": "Consegui terminar uma!", "author": "Mentiroso", "replies": 105, "date": "21/07/2006" },
+        { "title": "A minha borracha quebrou no meio", "author": "Ana", "replies": 12, "date": "20/07/2006" }
+    ]},
     { "id": 2, "name": "Bocejei ao ver essa comunidade", "img": "assets/images/boceja-comunidade.png", "description": "O sono é contagioso, cuidado!", "members": 5432 },
-    { "id": 3, "name": "Eu Odeio Acordar Cedo", "img": "assets/images/odeio-acordar-cedo.png", "description": "O sol nasce para todos, mas eu prefiro dormir.", "members": 987654 },
+    { "id": 3, "name": "Eu Odeio Acordar Cedo", "img": "assets/images/odeio-acordar-cedo.png", "description": "O sol nasce para todos, mas eu prefiro dormir.", "members": 987654, "topics": [
+        { "title": "Bom dia é o caramba", "author": "Sonolento", "replies": 500, "date": "Hoje" },
+        { "title": "Dicas para acordar cedo?", "author": "Desesperado", "replies": 2, "date": "Ontem" },
+        { "title": "Quem mais tá com sono?", "author": "Zzz", "replies": 15, "date": "20/07/2006" }
+    ]},
     { "id": 4, "name": "Eu amo fim de semana", "img": "assets/images/amo-fim-semana.png", "description": "A melhor parte da semana chegou.", "members": 500100 },
     { "id": 5, "name": "Eu colho Flores e TONY RAMOS!", "img": "assets/images/flores-tony.png", "description": "Trocadilhos infames que amamos.", "members": 8765 },
     { "id": 6, "name": "Detesto erros de digitassão", "img": "assets/images/erro-digitaçao.png", "description": "A ironia de escrever errado de propósito.", "members": 23456 },
@@ -9,7 +17,10 @@
     { "id": 8, "name": "Ladrões de banco", "img": "assets/images/ladrao-banco.png", "description": "Aquele banco da praça que sumiu.", "members": 1200 },
     { "id": 9, "name": "Não sei individualizar duplas", "img": "assets/images/individualizar-duplas.png", "description": "Chitãozinho e Xororó são uma pessoa só?", "members": 4500 },
     { "id": 10, "name": "Eu leio shampoo no banho", "img": "assets/images/leio-banho.png", "description": "Cultura e higiene pessoal.", "members": 67890 },
-    { "id": 11, "name": "EU AMO CHOCOLATE!", "img": "assets/images/amo-chocolate.png", "description": "A melhor invenção da humanidade.", "members": 800000 },
+    { "id": 11, "name": "EU AMO CHOCOLATE!", "img": "assets/images/amo-chocolate.png", "description": "A melhor invenção da humanidade.", "members": 800000, "topics": [
+        { "title": "Branco ou Preto?", "author": "Chocólatra", "replies": 88, "date": "15/07/2006" },
+        { "title": "Receita de brigadeiro", "author": "Vovó", "replies": 30, "date": "10/07/2006" }
+    ]},
     { "id": 12, "name": "Deus me disse: desce e arrasa!", "img": "assets/images/desce-arrasa.png", "description": "Autoestima lá em cima sempre.", "members": 34567 },
     { "id": 13, "name": "Tocava Campainha e Corria", "img": "assets/images/campainha-correr.png", "description": "Adrenalina pura da infância.", "members": 56789 },
     { "id": 14, "name": "Eu tenho medo do PLANTÃO", "img": "assets/images/medo-plantao.png", "description": "Aquela música da Globo dá arrepios.", "members": 99999 },
