@@ -6,6 +6,62 @@
     <title>orkut - Comunidade</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <style>
+        .comm-sidebar-card { background: white; padding: 10px; margin-top: 10px; border-radius: 3px; }
+        .comm-sidebar-title { color: black; font-weight: 300; font-size: 16px; margin-bottom: 4px; font-family: Arial, sans-serif; }
+        .comm-sidebar-members { font-style: italic; color: #999; font-size: 12px; margin-bottom: 14px; display: block; }
+        .comm-menu-item { display: block; padding: 2px 0 2px 8px; color: #0044cc; text-decoration: none; margin-bottom: 14px; position: relative; font-size: 12px; border-left: 4px solid transparent; }
+        .comm-menu-item.active { color: #0044cc; border-left: 4px solid #0044cc; padding-left: 4px; font-weight: bold; }
+        .comm-actions-title { font-weight: bold; margin-top: 16px; margin-bottom: 8px; display: block; font-size: 12px; color: black; }
+        .comm-action-link { display: block; color: #0044cc; text-decoration: none; margin-bottom: 8px; font-size: 12px; }
+        
+        .comm-info-card { background: white; padding: 15px; margin-bottom: 20px; border-radius: 5px; position: relative; }
+        .comm-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .comm-title-large { font-size: 24px; font-weight: 300; color: black; font-family: Arial, sans-serif; }
+        .comm-join-btn { 
+            background: #f0f0f0; border: 1px solid #666; color: #333; 
+            padding: 2px 8px; border-radius: 3px; cursor: pointer; 
+            font-size: 11px; display: flex; align-items: center; 
+            box-shadow: 1px 1px 2px #666; 
+        }
+        .comm-join-icon { 
+            margin-right: 4px; color: #ccc; background: transparent;
+            border: 1px solid #666; width: 12px; height: 12px; 
+            line-height: 10px; text-align: center; display: inline-block; font-weight: bold;
+        }
+        
+        .comm-details-grid { display: flex; gap: 20px; font-size: 11px; color: #666; }
+        .comm-detail-col { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
+        .comm-hide-profile { color: #0044cc; margin-top: 8px; cursor: pointer; text-decoration: none; }
+        
+        .comm-divider { height: 1px; background: #e0e0e0; margin: 1px 0 10px 0; width: 100%; }
+        .comm-desc-text { font-size: 12px; line-height: 1.4; color: black; }
+        
+        .comm-forum-card { background: white; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+        .comm-forum-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .comm-forum-title { color: #0044cc; font-weight: bold; font-size: 14px; }
+        .comm-create-topic-btn { background: #f0f0f0; border: 1px solid #999; color: #333; padding: 2px 6px; font-size: 11px; cursor: pointer; }
+        
+        .comm-topic-row { display: flex; align-items: flex-start; padding: 8px 0; position: relative; }
+        .comm-topic-img { width: 30px; height: 30px; margin-right: 10px; object-fit: cover; }
+        .comm-topic-content { flex-grow: 1; }
+        .comm-topic-title { font-weight: bold; color: #0044cc; font-size: 12px; display: block; text-decoration: none; }
+        .comm-topic-replies { font-size: 10px; color: #666; margin-top: 2px; }
+        .comm-topic-meta { font-size: 11px; color: #666; text-align: right; margin-right: 30px; display: flex; flex-direction: column; align-items: flex-end; }
+        .comm-topic-toggle { 
+            position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+            width: 16px; height: 16px; border: 1px solid #ccc; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            font-size: 8px; color: #666; cursor: default; 
+        }
+        .comm-topic-divider { height: 1px; background: #eee; margin-top: 4px; margin-bottom: 4px; }
+        .comm-detail-item b { color: #000; font-weight: bold; }
+        
+        .poll-option { margin-bottom: 8px; display: block; cursor: pointer; }
+        .poll-bar-container { background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 2px; width: 200px; }
+        .poll-bar-fill { background: #6d84b4; height: 100%; }
+        .poll-result-row { margin-bottom: 10px; font-size: 11px; }
+    </style>
 </head>
 <body>
 
@@ -37,63 +93,91 @@
                     <div class="profile-frame">
                         <img src="" alt="Comunidade" id="comm-image">
                     </div>
-                    <p class="user-name" id="comm-name-sidebar">Carregando...</p>
-                    <ul class="profile-menu">
-                        <li><a href="#">participar</a></li>
-                        <li><a href="#">fórum</a></li>
-                        <li><a href="#">enquetes</a></li>
-                        <li><a href="#">membros</a></li>
-                        <li><a href="#">eventos</a></li>
-                    </ul>
-                    <div style="margin-top: 15px;">
-                        <a href="index.html" style="color: var(--orkut-text-blue); text-decoration: underline;">voltar ao perfil</a>
+                    <div class="comm-sidebar-card">
+                        <div class="comm-sidebar-title" id="comm-name-sidebar">Carregando...</div>
+                        <span class="comm-sidebar-members" id="comm-members-count">... membros</span>
+                        
+                        <div style="margin-top: 14px;">
+                            <a href="#" class="comm-menu-item active" id="comm-tab-main">comunidade</a>
+                            <a href="#" class="comm-menu-item" id="comm-tab-forum">fórum</a>
+                            <a href="#" class="comm-menu-item" id="comm-tab-polls">enquetes</a>
+                            <a href="#" class="comm-menu-item" id="comm-members-link">membros</a>
+                        </div>
+                        
+                        <span class="comm-actions-title">Ações</span>
+                        <a href="#" class="comm-action-link" id="join-comm-link">Participar da comunidade</a>
+                        <a href="#" class="comm-action-link" id="report-abuse-link">Denunciar abuso</a>
                     </div>
                 </div>
             </aside>
 
             <section class="center-column">
-                <div class="card welcome-card">
-                    <div class="header-with-action">
-                        <h1 id="comm-name-main">Carregando...</h1>
-                        <button id="join-comm-btn" class="orkut-btn">participar</button>
+                <div id="comm-content-main">
+                    <div class="comm-info-card">
+                        <div class="comm-header">
+                            <span class="comm-title-large" id="comm-name-main">Carregando...</span>
+                            <button class="comm-join-btn" id="join-comm-btn-main">
+                                <span class="comm-join-icon">+</span> Participar da comunidade
+                            </button>
+                        </div>
+                        
+                        <div class="comm-details-grid">
+                            <div class="comm-detail-col" style="min-width: 120px;">
+                                <div class="comm-detail-item"><b>idioma:</b> Português</div>
+                                <div class="comm-detail-item"><b>categoria:</b> Diversos</div>
+                                <div class="comm-detail-item"><b>tipo:</b> Pública</div>
+                                <div class="comm-detail-item"><b>visivel por:</b> Todo mundo</div>
+                                <a href="#" class="comm-hide-profile">Ocultar perfil</a>
+                            </div>
+                            <div class="comm-detail-col">
+                                <div class="comm-detail-item"><b>criada em:</b> 20/07/2006</div>
+                                <div class="comm-detail-item"><b>local:</b> Brasil</div>
+                                <div class="comm-detail-item"><b>proprietario:</b> Carlos</div>
+                                <div class="comm-detail-item"><b>moderadores:</b> Ana, João</div>
+                            </div>
+                        </div>
+                        
+                        <div class="comm-divider"></div>
+                        
+                        <div class="comm-desc-text" id="comm-description">Carregando descrição...</div>
                     </div>
-                    
-                    <div class="profile-data">
-                        <div class="data-row">
-                            <span class="label">idioma:</span>
-                            <span class="value">Português</span>
+
+                    <div class="comm-forum-card" id="forum-card-anchor">
+                        <div class="comm-forum-header">
+                            <span class="comm-forum-title">Fórum</span>
+                            <button class="comm-create-topic-btn">criar tópico</button>
                         </div>
-                        <div class="data-row">
-                            <span class="label">categoria:</span>
-                            <span class="value">Diversão</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="label">dono:</span>
-                            <span class="value">Anônimo</span>
-                        </div>
-                        <div class="data-row">
-                            <span class="label">tipo:</span>
-                            <span class="value">Pública</span>
-                        </div>
-                        <div class="data-row" style="padding: 10px; display: block;">
-                            <p id="comm-description">Carregando descrição...</p>
+                        <div id="comm-forum-topics">
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
-                    <h2>fórum</h2>
-                    <div style="padding: 10px;">
-                        <p>Nenhum tópico recente.</p>
-                        <button class="orkut-btn" style="margin-top: 10px;">Criar tópico</button>
+                <div id="comm-content-forum" style="display: none;">
+                    <div class="comm-forum-card">
+                        <div class="comm-forum-header">
+                            <span class="comm-forum-title">Fórum</span>
+                            <button class="comm-create-topic-btn">criar tópico</button>
+                        </div>
+                        <div id="comm-forum-topics-full"></div>
+                    </div>
+                </div>
+
+                <div id="comm-content-polls" style="display: none;">
+                    <div class="comm-forum-card">
+                        <div class="comm-forum-header">
+                            <span class="comm-forum-title">Enquetes</span>
+                            <button class="comm-create-topic-btn">criar enquete</button>
+                        </div>
+                        <div id="poll-container" style="padding: 10px;">
+                        </div>
                     </div>
                 </div>
             </section>
 
             <aside class="right-column">
-                <div class="card friends-card">
+                <div class="card friends-card" style="margin-top: 0;">
                     <div class="card-header">
-                        <h3>membros (<span id="comm-members-count">...</span>)</h3>
+                        <h3>membros (<span id="comm-members-count-card">...</span>)</h3>
                     </div>
                     <div class="friends-grid">
                         <div class="friend-item"><img src="https://picsum.photos/60?random=100"><span>João</span></div>
@@ -120,6 +204,27 @@
             </div>
         </footer>
     </main>
+
+    <div id="create-topic-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-topic-modal">&times;</span>
+            <h3 style="margin-top: 0;">Criar novo tópico</h3>
+            <input type="text" id="new-topic-title" class="edit-input" placeholder="Título do tópico" style="margin: 10px 0;">
+            <textarea id="new-topic-body" class="edit-input" rows="5" placeholder="Conteúdo do tópico..." style="margin-bottom: 10px;"></textarea>
+            <div style="text-align: right;">
+                <button id="submit-topic-btn" class="orkut-btn">Criar tópico</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="members-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-members-modal">&times;</span>
+            <h3 style="margin-top: 0;">Membros da Comunidade</h3>
+            <div id="members-list-container" style="max-height: 300px; overflow-y: auto;">
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

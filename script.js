@@ -314,9 +314,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const commList = qs('.comm-list');
     const viewAllCommBtn = $('view-all-comm');
 
-    fetch('communities.json')
-        .then(response => response.json())
-        .then(data => {
+    const loadCommunities = () => {
+        const stored = storage.getJson('allCommunities');
+        if (stored) return Promise.resolve(stored);
+        return fetch('communities.json').then(r => r.json()).then(d => {
+            storage.setJson('allCommunities', d);
+            return d;
+        });
+    };
+
+    loadCommunities().then(data => {
             allCommunities = data;
             
             const commCountEl = $('comm-count');
@@ -333,59 +340,275 @@ document.addEventListener('DOMContentLoaded', function() {
                 const community = allCommunities.find(c => c.id === commId);
                 
                 if (community) {
-                    commNameMain.textContent = community.name;
                     document.title = `orkut - ${community.name}`;
+
                     const commImage = $('comm-image');
                     if (commImage) commImage.src = community.img;
+                    
                     const commNameSidebar = $('comm-name-sidebar');
                     if (commNameSidebar) commNameSidebar.textContent = community.name;
+                    
+                    const commMembers = $('comm-members-count');
+                    if (commMembers) commMembers.textContent = `${community.members.toLocaleString('pt-BR')} membros`;
+                    
+                    const commMembersCard = $('comm-members-count-card');
+                    if (commMembersCard) commMembersCard.textContent = community.members.toLocaleString('pt-BR');
+
+                    const commNameMain = $('comm-name-main');
+                    if (commNameMain) commNameMain.textContent = community.name;
+                    
                     const commDesc = $('comm-description');
                     if (commDesc) commDesc.textContent = community.description;
-                    const commMembers = $('comm-members-count');
-                    if (commMembers) commMembers.textContent = community.members.toLocaleString('pt-BR');
 
-                    const cards = document.querySelectorAll('.center-column .card');
-                    let forumContentDiv = null;
-                    cards.forEach(card => {
-                        const h2 = card.querySelector('h2');
-                        if (h2 && h2.textContent.toLowerCase().includes('fórum')) {
-                            forumContentDiv = card.querySelector('div[style="padding: 10px;"]');
+                    const forumContainer = $('comm-forum-topics');
+                    const forumContainerFull = $('comm-forum-topics-full');
+
+                    const renderTopics = () => {
+                        if (forumContainer || forumContainerFull) {
+                            let topicsHtml = '';
+                            if (community.topics && community.topics.length > 0) {
+                                community.topics.forEach((topic, index) => {
+                                    const isLast = index === community.topics.length - 1;
+                                    topicsHtml += `
+                                        <div class="comm-topic-row">
+                                            <img src="https://picsum.photos/30/30?random=${index + 100}" class="comm-topic-img">
+                                            <div class="comm-topic-content">
+                                                <a href="#" class="comm-topic-title">${topic.title}</a>
+                                                <div class="comm-topic-replies">(${topic.replies} respostas)</div>
+                                            </div>
+                                            <div class="comm-topic-meta">
+                                                <div>última resposta: ${topic.author}...</div>
+                                                <div>${topic.date}</div>
+                                            </div>
+                                            <div class="comm-topic-toggle">v</div>
+                                        </div>
+                                        ${!isLast ? '<div class="comm-topic-divider"></div>' : ''}
+                                    `;
+                                });
+                            } else {
+                                topicsHtml = '<div style="padding:10px; color:#666;">Nenhum tópico.</div>';
+                            }
+                            if (forumContainer) forumContainer.innerHTML = topicsHtml;
+                            if (forumContainerFull) forumContainerFull.innerHTML = topicsHtml;
                         }
-                    });
+                    };
+                    renderTopics();
 
-                    if (forumContentDiv && community.topics && community.topics.length > 0) {
-                        let topicsHtml = '<table style="width:100%; border-collapse:collapse; font-size:11px; margin-bottom:10px;">';
-                        topicsHtml += '<tr style="background:#d4e1f5; text-align:left;"><th style="padding:4px;">Tópico</th><th style="padding:4px;">Autor</th><th style="padding:4px; text-align:center;">Resps.</th><th style="padding:4px; text-align:right;">Última postagem</th></tr>';
+                    const createTopicBtns = document.querySelectorAll('.comm-create-topic-btn');
+                    const topicModal = $('create-topic-modal');
+                    const closeTopicModal = $('close-topic-modal');
+                    const submitTopicBtn = $('submit-topic-btn');
+
+                    if (createTopicBtns.length > 0 && topicModal) {
+                        createTopicBtns.forEach(btn => btn.addEventListener('click', () => {
+                            topicModal.style.display = 'block';
+                            const titleInput = $('new-topic-title');
+                            if(titleInput) titleInput.focus();
+                        }));
                         
-                        community.topics.forEach((topic, index) => {
-                            const bg = index % 2 === 0 ? '#f0f5fa' : '#ffffff';
-                            topicsHtml += `<tr style="background:${bg};">
-                                <td style="padding:4px;"><a href="#" style="color:#003399; text-decoration:none;">${topic.title}</a></td>
-                                <td style="padding:4px;"><a href="#" style="color:#003399; text-decoration:none;">${topic.author}</a></td>
-                                <td style="padding:4px; text-align:center;">${topic.replies}</td>
-                                <td style="padding:4px; text-align:right; color:#666;">${topic.date}</td>
-                            </tr>`;
-                        });
-                        topicsHtml += '</table>';
-                        topicsHtml += '<button class="orkut-btn">Criar tópico</button>';
-                        forumContentDiv.innerHTML = topicsHtml;
+                        if (closeTopicModal) closeTopicModal.addEventListener('click', () => topicModal.style.display = 'none');
+                        window.addEventListener('click', (e) => { if (e.target == topicModal) topicModal.style.display = 'none'; });
+
+                        if (submitTopicBtn) {
+                            submitTopicBtn.addEventListener('click', () => {
+                                const title = $('new-topic-title').value;
+                                if (title.trim()) {
+                                    const newTopic = { title: title, author: 'usuario', replies: 0, date: new Date().toLocaleDateString('pt-BR') };
+                                    if (!community.topics) community.topics = [];
+                                    community.topics.unshift(newTopic);
+                                    storage.setJson('allCommunities', allCommunities);
+                                    renderTopics();
+                                    topicModal.style.display = 'none';
+                                    $('new-topic-title').value = '';
+                                    $('new-topic-body').value = '';
+                                } else alert('Digite um título para o tópico.');
+                            });
+                        }
                     }
 
-                    const joinBtn = $('join-comm-btn');
-                    if (joinBtn) {
-                        const storageKey = `joined_comm_${commId}`;
+                    const joinBtn = $('join-comm-btn-main');
+                    const joinLink = $('join-comm-link');
+                    const storageKey = `joined_comm_${commId}`;
+                    
+                    const updateJoinState = () => {
                         const isJoined = storage.get(storageKey) === 'true';
-                        joinBtn.textContent = isJoined ? 'sair' : 'participar';
-
-                        joinBtn.addEventListener('click', function() {
-                            if (joinBtn.textContent === 'participar') {
-                                joinBtn.textContent = 'sair';
-                                storage.set(storageKey, 'true');
+                        if (joinBtn) {
+                            if (isJoined) {
+                                joinBtn.innerHTML = `<span class="comm-join-icon" style="color: #333;">-</span> Sair da comunidade`;
                             } else {
-                                joinBtn.textContent = 'participar';
-                                storage.set(storageKey, 'false');
+                                joinBtn.innerHTML = `<span class="comm-join-icon" style="color: #ccc;">+</span> Participar da comunidade`;
+                            }
+                        }
+                        if (joinLink) {
+                            joinLink.textContent = isJoined ? 'Sair da comunidade' : 'Participar da comunidade';
+                        }
+                    };
+                    
+                    updateJoinState();
+
+                    const toggleJoin = (e) => {
+                        e.preventDefault();
+                        const current = storage.get(storageKey) === 'true';
+                        storage.set(storageKey, !current);
+                        updateJoinState();
+                    };
+
+                    if (joinBtn) joinBtn.addEventListener('click', toggleJoin);
+                    if (joinLink) joinLink.addEventListener('click', toggleJoin);
+
+                    const reportAbuseLink = $('report-abuse-link');
+                    if (reportAbuseLink) {
+                        reportAbuseLink.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            if (confirm('Tem certeza que deseja denunciar esta comunidade por abuso?')) {
+                                alert('Denúncia enviada para análise. Obrigado por colaborar com a segurança do orkut.');
                             }
                         });
+                    }
+
+                    const membersLink = $('comm-members-link');
+                    const membersModal = $('members-modal');
+                    const closeMembersModal = $('close-members-modal');
+                    const membersListContainer = $('members-list-container');
+
+                    if (membersLink && membersModal) {
+                        membersLink.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            membersModal.style.display = 'block';
+                            
+                            if (membersListContainer) {
+                                membersListContainer.innerHTML = '';
+                                const totalToShow = Math.min(community.members, 20);
+                                
+                                for (let i = 0; i < totalToShow; i++) {
+                                    const randomId = Math.floor(Math.random() * 1000);
+                                    const names = ['Ana', 'Carlos', 'João', 'Maria', 'Pedro', 'Juliana', 'Fernanda', 'Roberto', 'Lucas', 'Gabriel'];
+                                    const name = names[Math.floor(Math.random() * names.length)] + ' ' + names[Math.floor(Math.random() * names.length)];
+                                    
+                                    const memberHtml = `
+                                        <div style="display: flex; align-items: center; padding: 5px; border-bottom: 1px solid #eee;">
+                                            <img src="https://picsum.photos/40/40?random=${randomId}" style="width: 40px; height: 40px; margin-right: 10px; border: 1px solid #ccc;">
+                                            <div>
+                                                <a href="#" style="color: #0044cc; font-weight: bold; text-decoration: none; font-size: 12px;">${name}</a>
+                                                <div style="color: #666; font-size: 10px;">Membro desde 2006</div>
+                                            </div>
+                                        </div>
+                                    `;
+                                    membersListContainer.insertAdjacentHTML('beforeend', memberHtml);
+                                }
+                                
+                                if (community.members > 20) {
+                                     membersListContainer.insertAdjacentHTML('beforeend', `<div style="padding: 10px; text-align: center; color: #666;">E mais ${(community.members - 20).toLocaleString('pt-BR')} membros...</div>`);
+                                }
+                            }
+                        });
+                        
+                        if (closeMembersModal) {
+                            closeMembersModal.addEventListener('click', () => membersModal.style.display = 'none');
+                        }
+                        window.addEventListener('click', (e) => {
+                            if (e.target == membersModal) membersModal.style.display = 'none';
+                        });
+                    }
+
+                    const tabMain = $('comm-tab-main');
+                    const tabForum = $('comm-tab-forum');
+                    const tabPolls = $('comm-tab-polls');
+                    const contentMain = $('comm-content-main');
+                    const contentForum = $('comm-content-forum');
+                    const contentPolls = $('comm-content-polls');
+
+                    function setActiveTab(activeTab) {
+                        [tabMain, tabForum, tabPolls].forEach(t => {
+                            if(t) t.classList.remove('active');
+                        });
+                        if(activeTab) activeTab.classList.add('active');
+                    }
+
+                    if (tabMain && contentMain) {
+                        tabMain.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            setActiveTab(tabMain);
+                            contentMain.style.display = 'block';
+                            if(contentForum) contentForum.style.display = 'none';
+                            if(contentPolls) contentPolls.style.display = 'none';
+                        });
+                    }
+
+                    if (tabForum && contentForum) {
+                        tabForum.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            setActiveTab(tabForum);
+                            if(contentMain) contentMain.style.display = 'none';
+                            contentForum.style.display = 'block';
+                            if(contentPolls) contentPolls.style.display = 'none';
+                        });
+                    }
+
+                    if (tabPolls && contentPolls) {
+                        tabPolls.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            setActiveTab(tabPolls);
+                            if(contentMain) contentMain.style.display = 'none';
+                            if(contentForum) contentForum.style.display = 'none';
+                            contentPolls.style.display = 'block';
+                            renderPoll();
+                        });
+                    }
+
+                    const pollContainer = $('poll-container');
+                    const pollStorageKey = `poll_vote_${commId}`;
+                    
+                    const pollData = {
+                        question: "O que você acha desta comunidade?",
+                        options: ["Excelente", "Boa", "Regular", "Ruim"],
+                        votes: [12, 5, 2, 1]
+                    };
+
+                    function renderPoll() {
+                        if (!pollContainer) return;
+                        
+                        const userVote = storage.get(pollStorageKey);
+                        let html = `<h4 style="margin-top:0; margin-bottom:10px;">${pollData.question}</h4>`;
+
+                        if (userVote) {
+                            const totalVotes = pollData.votes.reduce((a, b) => a + b, 0) + (userVote ? 0 : 0);
+                            
+                            pollData.options.forEach((opt, i) => {
+                                const votes = pollData.votes[i];
+                                const percent = totalVotes === 0 ? 0 : Math.round((votes / totalVotes) * 100);
+                                html += `
+                                    <div class="poll-result-row">
+                                        <div>${opt} (${votes} votos - ${percent}%)</div>
+                                        <div class="poll-bar-container"><div class="poll-bar-fill" style="width: ${percent}%"></div></div>
+                                    </div>
+                                `;
+                            });
+                            html += `<div style="margin-top:10px; font-size:10px; color:#666;">Total de votos: ${totalVotes}</div>`;
+                        } else {
+                            html += `<form id="poll-form">`;
+                            pollData.options.forEach((opt, i) => {
+                                html += `<label class="poll-option"><input type="radio" name="poll_opt" value="${i}"> ${opt}</label>`;
+                            });
+                            html += `<button type="submit" class="orkut-btn" style="margin-top:10px;">Votar</button></form>`;
+                        }
+                        pollContainer.innerHTML = html;
+
+                        const pollForm = $('poll-form');
+                        if (pollForm) {
+                            pollForm.addEventListener('submit', (e) => {
+                                e.preventDefault();
+                                const selected = pollForm.querySelector('input[name="poll_opt"]:checked');
+                                if (selected) {
+                                    const idx = parseInt(selected.value);
+                                    pollData.votes[idx]++;
+                                    storage.set(pollStorageKey, 'true');
+                                    renderPoll();
+                                } else {
+                                    alert('Selecione uma opção para votar.');
+                                }
+                            });
+                        }
                     }
                 }
             }
