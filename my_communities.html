@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>orkut - Recados</title>
+    <title>orkut - Minhas Comunidades</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <style>
+        .comm-info-card { background: white; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        .comm-title-large { font-size: 24px; font-weight: 300; color: black; font-family: Arial, sans-serif; }
+        .comm-divider { height: 1px; background: #e0e0e0; margin: 10px 0 20px 0; width: 100%; }
+        .comm-list-item { display: flex; gap: 15px; padding-bottom: 15px; margin-bottom: 15px; border-bottom: 1px solid #eee; }
+        .comm-list-item img { width: 80px; height: 80px; object-fit: cover; border: 1px solid #ccc; }
+        .comm-list-info a { font-weight: bold; color: #0044cc; text-decoration: none; font-size: 14px; }
+        .comm-list-info div { font-size: 11px; color: #666; margin-top: 4px; }
+    </style>
 </head>
 <body>
 
@@ -15,7 +24,7 @@
             <nav class="main-nav">
                 <a href="index.html">Início</a>
                 <a href="index.html">Perfil</a>
-                <a href="scraps.html">Página de recados</a>
+                <a href="#">Página de recados</a>
                 <a href="friends.html">Amigos</a>
                 <a href="my_communities.html">Comunidades</a>
             </nav>
@@ -31,35 +40,32 @@
 
     <main class="main-wrapper">
         <div class="orkut-grid">
-            
             <aside class="left-column">
                 <div class="card profile-pic-card">
-                    <div class="profile-frame">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/150px-Default_pfp.svg.png" alt="Foto de Perfil" id="profile-image-sidebar">
-                    </div>
-                    <p class="user-name" id="sidebar-name">usuario</p>
-                    <div style="margin-top: 15px;">
-                        <a href="index.html" style="color: var(--orkut-text-blue); text-decoration: underline;">voltar ao perfil</a>
+                    <img src="assets/images/profile-default.png" id="profile-image-sidebar" style="width:100%; display:block;">
+                    <div style="background: white; padding: 10px; margin-top: 5px; border-radius: 3px;">
+                        <div id="sidebar-name" style="font-weight:bold; color: #0044cc;"></div>
+                        <div id="sidebar-sex" style="font-size: 11px; color: #666;"></div>
+                        <div id="sidebar-rel" style="font-size: 11px; color: #666;"></div>
+                        <div id="sidebar-loc" style="font-size: 11px; color: #666;"></div>
                     </div>
                 </div>
             </aside>
 
             <section class="center-column">
-                <div class="card">
-                    <h2>Página de recados</h2>
-                    
-                    <div id="scraps-list-full">
-                        <p>Carregando recados...</p>
-                    </div>
+                <div class="comm-info-card">
+                    <h1 class="comm-title-large">Minhas Comunidades</h1>
+                    <div class="comm-divider"></div>
+                    <div id="my-communities-list"></div>
                 </div>
             </section>
 
             <aside class="right-column">
                 <div class="card friends-card">
                     <div class="card-header">
-                        <h3>amigos</h3>
+                        <h3 id="friends-count">amigos (3)</h3>
                     </div>
-                    <div class="friends-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="friends-grid">
                         <div class="friend-item"><img src="https://picsum.photos/60?random=1"><span>Pedro</span></div>
                         <div class="friend-item"><img src="https://picsum.photos/60?random=2"><span>Ana</span></div>
                         <div class="friend-item"><img src="https://picsum.photos/60?random=3"><span>Carlos</span></div>
@@ -81,31 +87,7 @@
                     </div>
                 </div>
             </aside>
-
         </div>
-
-        <footer class="orkut-footer">
-            <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
-            <div class="footer-links">
-                <a href="#">Sobre o orkut</a> |
-                <a href="#">novidades</a> |
-                <a href="#">centro de segurança</a> |
-                <a href="#">privacidade</a> |
-                <a href="#">termos de uso</a> |
-                <a href="#">ajuda</a>
-            </div>
-        </footer>
     </main>
-
-    <div id="reply-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3 style="margin-top: 0;">Responder para <span id="reply-author-name"></span></h3>
-            <textarea id="reply-message" class="edit-input" rows="5" placeholder="Escreva sua resposta aqui..." style="margin: 10px 0;"></textarea>
-            <div style="text-align: right;">
-                <button id="send-reply-btn" class="orkut-btn">Enviar resposta</button>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

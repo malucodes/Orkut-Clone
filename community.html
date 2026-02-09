@@ -41,6 +41,7 @@
         .comm-forum-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         .comm-forum-title { color: #0044cc; font-weight: bold; font-size: 14px; }
         .comm-create-topic-btn { background: #f0f0f0; border: 1px solid #999; color: #333; padding: 2px 6px; font-size: 11px; cursor: pointer; }
+        .comm-create-poll-btn { background: #f0f0f0; border: 1px solid #999; color: #333; padding: 2px 6px; font-size: 11px; cursor: pointer; }
         
         .comm-topic-row { display: flex; align-items: flex-start; padding: 8px 0; position: relative; }
         .comm-topic-img { width: 30px; height: 30px; margin-right: 10px; object-fit: cover; }
@@ -71,9 +72,9 @@
             <nav class="main-nav">
                 <a href="index.html">Início</a>
                 <a href="index.html">Perfil</a>
-                <a href="#">Página de recados</a>
-                <a href="#">Amigos</a>
-                <a href="#">Comunidades</a>
+                <a href="scraps.html">Página de recados</a>
+                <a href="friends.html">Amigos</a>
+                <a href="my_communities.html">Comunidades</a>
             </nav>
             <div class="search-bar">
                 <input type="text" placeholder="pesquisa do orkut">
@@ -166,7 +167,7 @@
                     <div class="comm-forum-card">
                         <div class="comm-forum-header">
                             <span class="comm-forum-title">Enquetes</span>
-                            <button class="comm-create-topic-btn">criar enquete</button>
+                            <button class="comm-create-poll-btn">criar enquete</button>
                         </div>
                         <div id="poll-container" style="padding: 10px;">
                         </div>
@@ -222,6 +223,22 @@
             <span class="close-modal" id="close-members-modal">&times;</span>
             <h3 style="margin-top: 0;">Membros da Comunidade</h3>
             <div id="members-list-container" style="max-height: 300px; overflow-y: auto;">
+            </div>
+        </div>
+    </div>
+
+    <div id="create-poll-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-poll-modal">&times;</span>
+            <h3 style="margin-top: 0;">Criar nova enquete</h3>
+            <input type="text" id="new-poll-question" class="edit-input" placeholder="Pergunta da enquete" style="margin: 10px 0;">
+            <div id="poll-options-container">
+                <input type="text" class="edit-input poll-option-input" placeholder="Opção 1" style="margin-bottom: 5px;">
+                <input type="text" class="edit-input poll-option-input" placeholder="Opção 2" style="margin-bottom: 5px;">
+            </div>
+            <button id="add-poll-option-btn" class="orkut-btn" style="margin-bottom: 10px; font-size: 10px;">+ Adicionar opção</button>
+            <div style="text-align: right;">
+                <button id="submit-poll-btn" class="orkut-btn">Criar enquete</button>
             </div>
         </div>
     </div>

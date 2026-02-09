@@ -80,11 +80,13 @@ document.addEventListener('DOMContentLoaded', function() {
             headerEmail.textContent = headerEmail.title = `${emailUser}@orkut.com`;
         }
 
-        setTxt('sidebar-sex', $('profile-sex')?.textContent || 'sexo');
-        setTxt('sidebar-rel', $('profile-rel')?.textContent || 'relacionamento');
+        setTxt('sidebar-sex', $('profile-sex')?.textContent || storage.get('profile-sex', 'sexo'));
+        setTxt('sidebar-rel', $('profile-rel')?.textContent || storage.get('profile-rel', 'relacionamento'));
         
-        const loc = `${$('profile-hometown')?.textContent || ''}, ${$('profile-country')?.textContent || ''}`;
-        setTxt('sidebar-loc', loc === ', ' ? '' : loc);
+        const city = $('profile-hometown')?.textContent || storage.get('profile-hometown', '');
+        const country = $('profile-country')?.textContent || storage.get('profile-country', '');
+        const loc = `${city}, ${country}`;
+        setTxt('sidebar-loc', loc === ', ' ? 'Brasil' : loc);
     }
     updateSidebar();
 
@@ -309,6 +311,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const fullFriendsGrid = $('full-friends-grid');
+    if (fullFriendsGrid) {
+        const initialFriends = [
+            { name: 'João', img: 'https://picsum.photos/60?random=100' },
+            { name: 'Maria', img: 'https://picsum.photos/60?random=101' },
+            { name: 'José', img: 'https://picsum.photos/60?random=102' }
+        ];
+        const allFriends = [...initialFriends, ...extraFriendsData];
+        
+        allFriends.forEach(friend => {
+            const html = `
+                <div class="friend-card-large">
+                    <img src="${friend.img}">
+                    <span>${friend.name}</span>
+                </div>`;
+            fullFriendsGrid.insertAdjacentHTML('beforeend', html);
+        });
+    }
+
     let allCommunities = [];
     let commExpanded = false;
     const commList = qs('.comm-list');
@@ -326,12 +347,20 @@ document.addEventListener('DOMContentLoaded', function() {
     loadCommunities().then(data => {
             allCommunities = data;
             
+            if (!storage.get('default_comms_init')) {
+                const defaultIds = [3, 13, 11, 12]; 
+                defaultIds.forEach(id => storage.set(`joined_comm_${id}`, 'true'));
+                storage.set('default_comms_init', 'true');
+            }
+
+            const joinedComms = allCommunities.filter(c => storage.get(`joined_comm_${c.id}`) === 'true');
+
             const commCountEl = $('comm-count');
             if (commCountEl) {
-                commCountEl.textContent = `comunidades (${allCommunities.length})`;
+                commCountEl.textContent = `comunidades (${joinedComms.length})`;
             }
             
-            renderCommunities(allCommunities.slice(0, 3));
+            renderCommunities(joinedComms.slice(0, 4));
 
             const commNameMain = $('comm-name-main');
             if (commNameMain) {
@@ -558,12 +587,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     const pollContainer = $('poll-container');
                     const pollStorageKey = `poll_vote_${commId}`;
+                    const pollDataKey = `comm_poll_data_${commId}`;
                     
-                    const pollData = {
+                    let pollData = storage.getJson(pollDataKey, {
                         question: "O que você acha desta comunidade?",
                         options: ["Excelente", "Boa", "Regular", "Ruim"],
                         votes: [12, 5, 2, 1]
-                    };
+                    });
 
                     function renderPoll() {
                         if (!pollContainer) return;
@@ -610,6 +640,74 @@ document.addEventListener('DOMContentLoaded', function() {
                             });
                         }
                     }
+
+                    const createPollBtn = qs('.comm-create-poll-btn');
+                    const pollModal = $('create-poll-modal');
+                    const closePollModal = $('close-poll-modal');
+                    const submitPollBtn = $('submit-poll-btn');
+                    const addOptionBtn = $('add-poll-option-btn');
+                    const optionsContainer = $('poll-options-container');
+
+                    if (createPollBtn && pollModal) {
+                        createPollBtn.addEventListener('click', () => {
+                            pollModal.style.display = 'block';
+                        });
+                        
+                        if (closePollModal) closePollModal.addEventListener('click', () => pollModal.style.display = 'none');
+                        window.addEventListener('click', (e) => { if (e.target == pollModal) pollModal.style.display = 'none'; });
+
+                        if (addOptionBtn && optionsContainer) {
+                            addOptionBtn.onclick = () => {
+                                const count = optionsContainer.querySelectorAll('input').length + 1;
+                                const input = document.createElement('input');
+                                input.type = 'text';
+                                input.className = 'edit-input poll-option-input';
+                                input.placeholder = `Opção ${count}`;
+                                input.style.marginBottom = '5px';
+                                optionsContainer.appendChild(input);
+                            };
+                        }
+
+                        if (submitPollBtn) {
+                            submitPollBtn.onclick = () => {
+                                const question = $('new-poll-question').value.trim();
+                                const optionInputs = document.querySelectorAll('.poll-option-input');
+                                const options = Array.from(optionInputs).map(input => input.value.trim()).filter(v => v);
+
+                                if (question && options.length >= 2) {
+                                    pollData = { question, options, votes: new Array(options.length).fill(0) };
+                                    storage.setJson(pollDataKey, pollData);
+                                    storage.set(pollStorageKey, '');
+                                    renderPoll();
+                                    pollModal.style.display = 'none';
+                                    $('new-poll-question').value = '';
+                                    if(optionsContainer) optionsContainer.innerHTML = '<input type="text" class="edit-input poll-option-input" placeholder="Opção 1" style="margin-bottom: 5px;"><input type="text" class="edit-input poll-option-input" placeholder="Opção 2" style="margin-bottom: 5px;">';
+                                } else alert('Preencha a pergunta e pelo menos 2 opções.');
+                            };
+                        }
+                    }
+                }
+
+                const myCommList = $('my-communities-list');
+                if (myCommList) {
+                    const joined = allCommunities.filter(c => storage.get(`joined_comm_${c.id}`) === 'true');
+                    
+                    if (joined.length === 0) {
+                        myCommList.innerHTML = '<p style="color:#666; padding:10px;">Você ainda não participa de nenhuma comunidade.</p>';
+                    } else {
+                        joined.forEach(comm => {
+                            const html = `
+                                <div class="comm-list-item">
+                                    <a href="community.html?id=${comm.id}"><img src="${comm.img}"></a>
+                                    <div class="comm-list-info">
+                                        <a href="community.html?id=${comm.id}">${comm.name}</a>
+                                        <div>${comm.members.toLocaleString('pt-BR')} membros</div>
+                                        <div>${comm.description}</div>
+                                    </div>
+                                </div>`;
+                            myCommList.insertAdjacentHTML('beforeend', html);
+                        });
+                    }
                 }
             }
         })
@@ -641,12 +739,13 @@ document.addEventListener('DOMContentLoaded', function() {
         viewAllCommBtn.addEventListener('click', function(e) {
             e.preventDefault();
 
+            const joinedComms = allCommunities.filter(c => storage.get(`joined_comm_${c.id}`) === 'true');
             if (!commExpanded) {
-                renderCommunities(allCommunities);
+                renderCommunities(joinedComms);
                 viewAllCommBtn.textContent = 'voltar';
                 commExpanded = true;
             } else {
-                renderCommunities(allCommunities.slice(0, 3));
+                renderCommunities(joinedComms.slice(0, 4));
                 viewAllCommBtn.textContent = 'ver todas';
                 commExpanded = false;
             }
