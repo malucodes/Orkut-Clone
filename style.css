@@ -168,99 +168,6 @@ body {
     font-size: 11px !important;
 }
 
-.welcome-card {
-    background-color: var(--white);
-    border-top-right-radius: 35px;
-}
-
-.card .profile-header-name {
-    font-family: "Arial", sans-serif;
-    font-weight: 300;
-    font-size: 28px;
-    color: #000000;
-    margin-bottom: 5px;
-}
-
-.breadcrumbs {
-    font-size: 11px;
-    color: #999;
-    margin-bottom: 8px;
-}
-
-.breadcrumbs a {
-    color: var(--orkut-text-blue);
-    text-decoration: none;
-}
-
-.breadcrumbs a:hover {
-    text-decoration: underline;
-}
-
-.status-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    gap: 10px;
-}
-
-.status-box input {
-    flex-grow: 1;
-    padding: 3px;
-    border: 1px solid #ccc;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 11px;
-}
-
-.btn-edit-status {
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    color: var(--orkut-text-blue);
-    padding: 3px 10px;
-    cursor: pointer;
-    font-size: 11px;
-}
-
-.luck-message {
-    background-color: #ffffcc;
-    border: 1px solid #ebd27b;
-    padding: 5px;
-    margin-bottom: 10px;
-    font-size: 11px;
-}
-
-.profile-data {
-    background: var(--white);
-    padding: 0;
-}
-
-.data-row {
-    display: flex;
-    padding: 5px;
-}
-
-.data-row:nth-child(odd) {
-    background-color: #d4e1f5;
-}
-
-.data-row:nth-child(even) {
-    background-color: #f0f5fa;
-}
-
-.label {
-    width: 35%;
-    font-weight: bold;
-    color: var(--orkut-text-blue);
-    text-align: right;
-    margin-right: 10px;
-}
-
-.value {
-    flex: 1;
-    text-align: left;
-}
-
 .friends-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -361,13 +268,6 @@ body {
     color: #333;
 }
 
-.profile-stats-area {
-    display: flex;
-    gap: 15px;
-    margin: 5px 0 15px 0;
-    align-items: flex-start;
-}
-
 .stat-col {
     display: flex;
     flex-direction: column;
@@ -406,36 +306,6 @@ body {
 
 .rate-icon.active {
     opacity: 1;
-}
-
-.profile-tabs-container {
-    display: flex;
-    gap: 5px;
-    margin-top: 20px;
-    padding-left: 10px;
-}
-
-.profile-tab {
-    padding: 5px 15px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 11px;
-    background-color: #fff;
-    color: var(--orkut-text-blue);
-}
-
-.profile-tab.active {
-    background-color: #6d84b4;
-    color: #fff;
-}
-
-.profile-tab-line {
-    height: 1px;
-    background-color: #e0e0e0;
-    margin-bottom: 15px;
-    margin-top: 0;
 }
 
 .separator-full {
@@ -508,12 +378,6 @@ body {
     cursor: pointer;
 }
 
-.scrap-item, .testimonial-item {
-    padding: 8px 5px;
-    border-bottom: 1px dashed #ccc;
-    margin-bottom: 5px;
-}
-
 .view-all {
     display: block;
     text-align: right;
@@ -560,26 +424,6 @@ body {
     color: #000;
 }
 
-.item-replies {
-    margin-top: 8px;
-    background-color: #f0f5fa;
-    padding: 5px;
-    border: 1px solid #d4e1f5;
-    border-radius: 3px;
-}
-
-.reply-item {
-    font-size: 10px;
-    margin-bottom: 4px;
-    border-bottom: 1px dotted #ccc;
-    padding-bottom: 2px;
-}
-
-.reply-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-}
-
 * {
     scrollbar-width: thin;
     scrollbar-color: #8db2d6 #e8eef7;
@@ -602,3 +446,36 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #6d84b4;
 }
+
+/* Estilos extraídos das páginas internas (Friends e Communities) */
+.comm-info-card { 
+    background: white; 
+    padding: 15px; 
+    margin-bottom: 20px; 
+    border-radius: 5px; 
+}
+
+.comm-title-large { 
+    font-size: 24px; 
+    font-weight: 300; 
+    color: black; 
+    font-family: Arial, sans-serif; 
+}
+
+.comm-divider { 
+    height: 1px; 
+    background: #e0e0e0; 
+    margin: 10px 0 20px 0; 
+    width: 100%; 
+}
+
+.orkut-grid.two-cols {
+    grid-template-columns: 160px 1fr;
+}
+
+/* Utilitários Gerais */
+.hidden { display: none !important; }
+.star-icon { color: gold; }
+.modal-title { margin-top: 0; }
+.modal-textarea { margin: 10px 0; }
+.modal-footer { text-align: right; }

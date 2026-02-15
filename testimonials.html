@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>orkut - Depoimentos</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="testimonials.css">
     <script src="script.js" defer></script>
+    <script src="testimonials.js" defer></script>
 </head>
 <body>
 
@@ -13,11 +15,11 @@
         <div class="header-content">
             <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
             <nav class="main-nav">
-                <a href="index.html">Início</a>
-                <a href="index.html">Perfil</a>
+                <a href="profile.html">Início</a>
+                <a href="profile.html">Perfil</a>
                 <a href="scraps.html">Página de recados</a>
-                <a href="#">Amigos</a>
-                <a href="#">Comunidades</a>
+                <a href="friends.html">Amigos</a>
+                <a href="my_communities.html">Comunidades</a>
             </nav>
             <div class="search-bar">
                 <input type="text" placeholder="pesquisa do orkut">
@@ -35,12 +37,25 @@
             <aside class="left-column">
                 <div class="card profile-pic-card">
                     <div class="profile-frame">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/150px-Default_pfp.svg.png" alt="Foto de Perfil" id="profile-image-sidebar">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/150px-Default_pfp.svg.png" id="profile-image-sidebar" alt="Foto de Perfil">
                     </div>
-                    <p class="user-name" id="sidebar-name">usuario</p>
-                    <div style="margin-top: 15px;">
-                        <a href="index.html" style="color: var(--orkut-text-blue); text-decoration: underline;">voltar ao perfil</a>
+                    <hr class="separator">
+                    <div class="sidebar-user-info">
+                        <a href="profile.html" class="user-name" id="sidebar-name">usuario</a>
+                        <div class="sidebar-details">
+                            <span id="sidebar-sex">sexo</span>
+                            <span id="sidebar-rel">relacionamento</span>
+                            <span id="sidebar-loc">Brasil</span>
+                        </div>
                     </div>
+                    <hr class="separator">
+                    <ul class="profile-menu">
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTIgMTJjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+PC9zdmc+" alt=""> <a href="profile.html">perfil</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTQgMkg2Yy0xLjEgMC0xLjk5LjktMS45OSAyTDQgMjBjMCAxLjEuODkgMiAxLjk5IDJIMThjMS4xIDAgMi0uOSAyLTJWOGwtNi02em0yIDE2SDh2LTJoOHYyem0wLTRIOHYtMmg4djJ6bS0zLTVWMy41TDE4LjUgOUgxM3oiLz48L3N2Zz4=" alt=""> <a href="scraps.html">recados</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMjAgNGgtMy4xN0wxNSAySDlMNy4xNyA0SDRjLTEuMSAwLTIgLjktMiAydjEyYzAgMS4xLjkgMiAyIDJoMTZjMS4xIDAgMi0uOSAyLTJWNmMwLTEuMS0uOS0yLTItMnptLTggMTNjLTIuNzYgMC01LTIuMjQtNS01czIuMjQtNSA1LTUgNSAyLjI0IDUgNS0yLjI0IDUgNSA1eiIvPjwvc3ZnPg==" alt=""> <a href="#">fotos</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTggNGwyIDRoLTNsLTItNGgtMmwyIDRoLTNsLTItNEg4bDIgNEg3TDUgNEg0Yy0xLjEgMC0xLjk5LjktMS45OSAyTDIgMThjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY0aC00eiIvPjwvc3ZnPg==" alt=""> <a href="#">videos</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMjAgMkg0Yy0xLjEgMC0yIC45LTIgMnYxOGw0LTRoMTRjMS4xIDAgMi0uOSAyLTJWNGMwLTEuMS0uOS0yLTItMnoiLz48L3N2Zz4=" alt=""> <a href="testimonials.html">depoimentos</a></li>
+                    </ul>
                 </div>
             </aside>
 
@@ -57,12 +72,27 @@
             <aside class="right-column">
                 <div class="card friends-card">
                     <div class="card-header">
-                        <h3>amigos</h3>
+                        <h3 id="friends-count">amigos (3)</h3>
                     </div>
                     <div class="friends-grid">
                         <div class="friend-item"><img src="https://picsum.photos/60?random=1"><span>Pedro</span></div>
                         <div class="friend-item"><img src="https://picsum.photos/60?random=2"><span>Ana</span></div>
                         <div class="friend-item"><img src="https://picsum.photos/60?random=3"><span>Carlos</span></div>
+                    </div>
+                    <div class="card-action">
+                        <a href="friends.html">ver todos</a>
+                    </div>
+                </div>
+
+                <div class="card communities-card">
+                    <div class="card-header">
+                        <h3 id="comm-count">comunidades (0)</h3>
+                    </div>
+                    <div class="comm-list">
+                    </div>
+                    <div class="card-action">
+                        <a href="my_communities.html" id="view-all-comm">ver todas</a>
+                        <a href="#" id="manage-comm">gerenciar</a>
                     </div>
                 </div>
             </aside>
@@ -83,9 +113,9 @@
     <div id="reply-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h3 style="margin-top: 0;">Responder para <span id="reply-author-name"></span></h3>
-            <textarea id="reply-message" class="edit-input" rows="5" placeholder="Escreva sua resposta aqui..." style="margin: 10px 0;"></textarea>
-            <div style="text-align: right;">
+            <h3 class="modal-title">Responder para <span id="reply-author-name"></span></h3>
+            <textarea id="reply-message" class="edit-input modal-textarea" rows="5" placeholder="Escreva sua resposta aqui..."></textarea>
+            <div class="modal-footer">
                 <button id="send-reply-btn" class="orkut-btn">Enviar resposta</button>
             </div>
         </div>

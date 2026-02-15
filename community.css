@@ -1,0 +1,54 @@
+.comm-sidebar-card { background: white; padding: 10px; margin-top: 10px; border-radius: 3px; }
+.comm-sidebar-title { color: black; font-weight: 300; font-size: 16px; margin-bottom: 4px; font-family: Arial, sans-serif; }
+.comm-sidebar-members { font-style: italic; color: #999; font-size: 12px; margin-bottom: 14px; display: block; }
+.comm-menu-item { display: block; padding: 2px 0 2px 8px; color: #0044cc; text-decoration: none; margin-bottom: 14px; position: relative; font-size: 12px; border-left: 4px solid transparent; }
+.comm-menu-item.active { color: #0044cc; border-left: 4px solid #0044cc; padding-left: 4px; font-weight: bold; }
+.comm-actions-title { font-weight: bold; margin-top: 16px; margin-bottom: 8px; display: block; font-size: 12px; color: black; }
+.comm-action-link { display: block; color: #0044cc; text-decoration: none; margin-bottom: 8px; font-size: 12px; }
+
+.comm-info-card { background: white; padding: 15px; margin-bottom: 20px; border-radius: 5px; position: relative; }
+.comm-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.comm-title-large { font-size: 24px; font-weight: 300; color: black; font-family: Arial, sans-serif; }
+.comm-join-btn { 
+    background: #f0f0f0; border: 1px solid #666; color: #333; 
+    padding: 2px 8px; border-radius: 3px; cursor: pointer; 
+    font-size: 11px; display: flex; align-items: center; 
+    box-shadow: 1px 1px 2px #666; 
+}
+.comm-join-icon { 
+    margin-right: 4px; color: #ccc; background: transparent;
+    border: 1px solid #666; width: 12px; height: 12px; 
+    line-height: 10px; text-align: center; display: inline-block; font-weight: bold;
+}
+
+.comm-details-grid { display: flex; gap: 20px; font-size: 11px; color: #666; }
+.comm-detail-col { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
+.comm-hide-profile { color: #0044cc; margin-top: 8px; cursor: pointer; text-decoration: none; }
+
+.comm-divider { height: 1px; background: #e0e0e0; margin: 1px 0 10px 0; width: 100%; }
+.comm-desc-text { font-size: 12px; line-height: 1.4; color: black; }
+
+.comm-forum-card { background: white; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
+.comm-forum-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.comm-forum-title { color: #0044cc; font-weight: bold; font-size: 14px; }
+.comm-create-topic-btn { background: #f0f0f0; border: 1px solid #999; color: #333; padding: 2px 6px; font-size: 11px; cursor: pointer; }
+
+.comm-topic-row { display: flex; align-items: flex-start; padding: 8px 0; position: relative; }
+.comm-topic-img { width: 30px; height: 30px; margin-right: 10px; object-fit: cover; }
+.comm-topic-content { flex-grow: 1; }
+.comm-topic-title { font-weight: bold; color: #0044cc; font-size: 12px; display: block; text-decoration: none; }
+.comm-topic-replies { font-size: 10px; color: #666; margin-top: 2px; }
+.comm-topic-meta { font-size: 11px; color: #666; text-align: right; margin-right: 30px; display: flex; flex-direction: column; align-items: flex-end; }
+.comm-topic-toggle { 
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; border: 1px solid #ccc; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; 
+    font-size: 8px; color: #666; cursor: default; 
+}
+.comm-topic-divider { height: 1px; background: #eee; margin-top: 4px; margin-bottom: 4px; }
+.comm-detail-item b { color: #000; font-weight: bold; }
+
+.poll-option { margin-bottom: 8px; display: block; cursor: pointer; }
+.poll-bar-container { background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 2px; width: 200px; }
+.poll-bar-fill { background: #6d84b4; height: 100%; }
+.poll-result-row { margin-bottom: 10px; font-size: 11px; }

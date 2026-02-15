@@ -5,64 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>orkut - Comunidade</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="community.css">
     <script src="script.js" defer></script>
-    <style>
-        .comm-sidebar-card { background: white; padding: 10px; margin-top: 10px; border-radius: 3px; }
-        .comm-sidebar-title { color: black; font-weight: 300; font-size: 16px; margin-bottom: 4px; font-family: Arial, sans-serif; }
-        .comm-sidebar-members { font-style: italic; color: #999; font-size: 12px; margin-bottom: 14px; display: block; }
-        .comm-menu-item { display: block; padding: 2px 0 2px 8px; color: #0044cc; text-decoration: none; margin-bottom: 14px; position: relative; font-size: 12px; border-left: 4px solid transparent; }
-        .comm-menu-item.active { color: #0044cc; border-left: 4px solid #0044cc; padding-left: 4px; font-weight: bold; }
-        .comm-actions-title { font-weight: bold; margin-top: 16px; margin-bottom: 8px; display: block; font-size: 12px; color: black; }
-        .comm-action-link { display: block; color: #0044cc; text-decoration: none; margin-bottom: 8px; font-size: 12px; }
-        
-        .comm-info-card { background: white; padding: 15px; margin-bottom: 20px; border-radius: 5px; position: relative; }
-        .comm-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-        .comm-title-large { font-size: 24px; font-weight: 300; color: black; font-family: Arial, sans-serif; }
-        .comm-join-btn { 
-            background: #f0f0f0; border: 1px solid #666; color: #333; 
-            padding: 2px 8px; border-radius: 3px; cursor: pointer; 
-            font-size: 11px; display: flex; align-items: center; 
-            box-shadow: 1px 1px 2px #666; 
-        }
-        .comm-join-icon { 
-            margin-right: 4px; color: #ccc; background: transparent;
-            border: 1px solid #666; width: 12px; height: 12px; 
-            line-height: 10px; text-align: center; display: inline-block; font-weight: bold;
-        }
-        
-        .comm-details-grid { display: flex; gap: 20px; font-size: 11px; color: #666; }
-        .comm-detail-col { display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
-        .comm-hide-profile { color: #0044cc; margin-top: 8px; cursor: pointer; text-decoration: none; }
-        
-        .comm-divider { height: 1px; background: #e0e0e0; margin: 1px 0 10px 0; width: 100%; }
-        .comm-desc-text { font-size: 12px; line-height: 1.4; color: black; }
-        
-        .comm-forum-card { background: white; padding: 10px; border-radius: 5px; margin-bottom: 20px; }
-        .comm-forum-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .comm-forum-title { color: #0044cc; font-weight: bold; font-size: 14px; }
-        .comm-create-topic-btn { background: #f0f0f0; border: 1px solid #999; color: #333; padding: 2px 6px; font-size: 11px; cursor: pointer; }
-        .comm-create-poll-btn { background: #f0f0f0; border: 1px solid #999; color: #333; padding: 2px 6px; font-size: 11px; cursor: pointer; }
-        
-        .comm-topic-row { display: flex; align-items: flex-start; padding: 8px 0; position: relative; }
-        .comm-topic-img { width: 30px; height: 30px; margin-right: 10px; object-fit: cover; }
-        .comm-topic-content { flex-grow: 1; }
-        .comm-topic-title { font-weight: bold; color: #0044cc; font-size: 12px; display: block; text-decoration: none; }
-        .comm-topic-replies { font-size: 10px; color: #666; margin-top: 2px; }
-        .comm-topic-meta { font-size: 11px; color: #666; text-align: right; margin-right: 30px; display: flex; flex-direction: column; align-items: flex-end; }
-        .comm-topic-toggle { 
-            position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
-            width: 16px; height: 16px; border: 1px solid #ccc; border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            font-size: 8px; color: #666; cursor: default; 
-        }
-        .comm-topic-divider { height: 1px; background: #eee; margin-top: 4px; margin-bottom: 4px; }
-        .comm-detail-item b { color: #000; font-weight: bold; }
-        
-        .poll-option { margin-bottom: 8px; display: block; cursor: pointer; }
-        .poll-bar-container { background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 2px; width: 200px; }
-        .poll-bar-fill { background: #6d84b4; height: 100%; }
-        .poll-result-row { margin-bottom: 10px; font-size: 11px; }
-    </style>
+    <script src="community.js" defer></script>
 </head>
 <body>
 
@@ -70,8 +15,8 @@
         <div class="header-content">
             <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
             <nav class="main-nav">
-                <a href="index.html">Início</a>
-                <a href="index.html">Perfil</a>
+                <a href="profile.html">Início</a>
+                <a href="profile.html">Perfil</a>
                 <a href="scraps.html">Página de recados</a>
                 <a href="friends.html">Amigos</a>
                 <a href="my_communities.html">Comunidades</a>
@@ -88,160 +33,110 @@
 
     <main class="main-wrapper">
         <div class="orkut-grid">
-            
             <aside class="left-column">
-                <div class="card profile-pic-card">
-                    <div class="profile-frame">
-                        <img src="" alt="Comunidade" id="comm-image">
-                    </div>
-                    <div class="comm-sidebar-card">
-                        <div class="comm-sidebar-title" id="comm-name-sidebar">Carregando...</div>
-                        <span class="comm-sidebar-members" id="comm-members-count">... membros</span>
-                        
-                        <div style="margin-top: 14px;">
-                            <a href="#" class="comm-menu-item active" id="comm-tab-main">comunidade</a>
-                            <a href="#" class="comm-menu-item" id="comm-tab-forum">fórum</a>
-                            <a href="#" class="comm-menu-item" id="comm-tab-polls">enquetes</a>
-                            <a href="#" class="comm-menu-item" id="comm-members-link">membros</a>
-                        </div>
-                        
-                        <span class="comm-actions-title">Ações</span>
-                        <a href="#" class="comm-action-link" id="join-comm-link">Participar da comunidade</a>
-                        <a href="#" class="comm-action-link" id="report-abuse-link">Denunciar abuso</a>
-                    </div>
+                <div class="comm-sidebar-card">
+                    <img src="" id="comm-image" alt="Comunidade" style="width:100%; margin-bottom: 10px; border: 1px solid #ccc; padding: 2px;">
+                    <div class="comm-sidebar-title" id="comm-name-sidebar">Nome da Comunidade</div>
+                    <span class="comm-sidebar-members" id="comm-members-count">0 membros</span>
+                    
+                    <a href="#" class="comm-menu-item active">perfil</a>
+                    <a href="#" class="comm-menu-item">fórum</a>
+                    <a href="#" class="comm-menu-item">enquetes</a>
+                    <a href="#" class="comm-menu-item">membros</a>
+                    
+                    <span class="comm-actions-title">ações</span>
+                    <a href="#" class="comm-action-link" id="join-comm-link">participar</a>
+                    <a href="#" class="comm-action-link" id="report-abuse-link">denunciar abuso</a>
                 </div>
             </aside>
 
             <section class="center-column">
-                <div id="comm-content-main">
-                    <div class="comm-info-card">
-                        <div class="comm-header">
-                            <span class="comm-title-large" id="comm-name-main">Carregando...</span>
-                            <button class="comm-join-btn" id="join-comm-btn-main">
-                                <span class="comm-join-icon">+</span> Participar da comunidade
-                            </button>
-                        </div>
-                        
-                        <div class="comm-details-grid">
-                            <div class="comm-detail-col" style="min-width: 120px;">
-                                <div class="comm-detail-item"><b>idioma:</b> Português</div>
-                                <div class="comm-detail-item"><b>categoria:</b> Diversos</div>
-                                <div class="comm-detail-item"><b>tipo:</b> Pública</div>
-                                <div class="comm-detail-item"><b>visivel por:</b> Todo mundo</div>
-                                <a href="#" class="comm-hide-profile">Ocultar perfil</a>
-                            </div>
-                            <div class="comm-detail-col">
-                                <div class="comm-detail-item"><b>criada em:</b> 20/07/2006</div>
-                                <div class="comm-detail-item"><b>local:</b> Brasil</div>
-                                <div class="comm-detail-item"><b>proprietario:</b> Carlos</div>
-                                <div class="comm-detail-item"><b>moderadores:</b> Ana, João</div>
-                            </div>
-                        </div>
-                        
-                        <div class="comm-divider"></div>
-                        
-                        <div class="comm-desc-text" id="comm-description">Carregando descrição...</div>
+                <div class="comm-info-card">
+                    <div class="comm-header">
+                        <h1 class="comm-title-large" id="comm-name-main">Nome da Comunidade</h1>
+                        <button class="comm-join-btn" id="join-comm-btn-main">
+                            <span class="comm-join-icon">+</span> participar
+                        </button>
                     </div>
 
-                    <div class="comm-forum-card" id="forum-card-anchor">
-                        <div class="comm-forum-header">
-                            <span class="comm-forum-title">Fórum</span>
-                            <button class="comm-create-topic-btn">criar tópico</button>
+                    <div class="comm-details-grid">
+                        <div class="comm-detail-col">
+                            <div class="comm-detail-item"><b>idioma:</b> Português (Brasil)</div>
+                            <div class="comm-detail-item"><b>categoria:</b> Outros</div>
+                            <div class="comm-detail-item"><b>dono:</b> <a href="#" style="color:#0044cc; text-decoration:none;">moderador</a></div>
                         </div>
-                        <div id="comm-forum-topics">
+                        <div class="comm-detail-col">
+                            <div class="comm-detail-item"><b>tipo:</b> pública</div>
+                            <div class="comm-detail-item"><b>criação:</b> 20/07/2006</div>
+                            <div class="comm-detail-item"><b>local:</b> Brasil</div>
                         </div>
+                    </div>
+
+                    <div class="comm-divider"></div>
+                    <div class="comm-desc-text" id="comm-description">Descrição da comunidade...</div>
+                </div>
+
+                <div class="comm-forum-card">
+                    <div class="comm-forum-header">
+                        <span class="comm-forum-title">fórum</span>
+                        <button class="comm-create-topic-btn">criar tópico</button>
+                    </div>
+                    <div id="comm-forum-topics"></div>
+                    <div style="text-align: right; margin-top: 10px;">
+                        <a href="#" style="font-size: 11px; font-weight: bold; color: #0044cc; text-decoration: none;">ver todos os tópicos</a>
                     </div>
                 </div>
 
-                <div id="comm-content-forum" style="display: none;">
-                    <div class="comm-forum-card">
-                        <div class="comm-forum-header">
-                            <span class="comm-forum-title">Fórum</span>
-                            <button class="comm-create-topic-btn">criar tópico</button>
-                        </div>
-                        <div id="comm-forum-topics-full"></div>
+                <div class="comm-forum-card">
+                    <div class="comm-forum-header">
+                        <span class="comm-forum-title">enquetes</span>
+                        <button class="comm-create-topic-btn">criar enquete</button>
                     </div>
-                </div>
-
-                <div id="comm-content-polls" style="display: none;">
-                    <div class="comm-forum-card">
-                        <div class="comm-forum-header">
-                            <span class="comm-forum-title">Enquetes</span>
-                            <button class="comm-create-poll-btn">criar enquete</button>
-                        </div>
-                        <div id="poll-container" style="padding: 10px;">
-                        </div>
+                    <div id="poll-container"></div>
+                    <div style="text-align: right; margin-top: 10px;">
+                        <a href="#" style="font-size: 11px; font-weight: bold; color: #0044cc; text-decoration: none;">ver todas as enquetes</a>
                     </div>
                 </div>
             </section>
 
             <aside class="right-column">
-                <div class="card friends-card" style="margin-top: 0;">
+                <div class="card">
                     <div class="card-header">
-                        <h3>membros (<span id="comm-members-count-card">...</span>)</h3>
+                        <h3 style="margin:0;">membros (<span id="comm-members-count-card">0</span>)</h3>
                     </div>
-                    <div class="friends-grid">
-                        <div class="friend-item"><img src="https://picsum.photos/60?random=100"><span>João</span></div>
-                        <div class="friend-item"><img src="https://picsum.photos/60?random=101"><span>Maria</span></div>
-                        <div class="friend-item"><img src="https://picsum.photos/60?random=102"><span>José</span></div>
+                    <div id="comm-members-preview" style="padding: 5px 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;">
+                        <div class="friend-item"><img src="https://picsum.photos/60?random=1"><span>Ana</span></div>
+                        <div class="friend-item"><img src="https://picsum.photos/60?random=2"><span>Carlos</span></div>
+                        <div class="friend-item"><img src="https://picsum.photos/60?random=3"><span>Pedro</span></div>
                     </div>
                     <div class="card-action">
                         <a href="#">ver todos</a>
                     </div>
                 </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>comunidades relacionadas</h3>
+                    </div>
+                    <div class="comm-list">
+                        <div class="comm-item"><img src="https://picsum.photos/30?random=50"><span>Eu amo dormir</span></div>
+                        <div class="comm-item"><img src="https://picsum.photos/30?random=51"><span>Café é vida</span></div>
+                        <div class="comm-item"><img src="https://picsum.photos/30?random=52"><span>Fim de semana</span></div>
+                    </div>
+                </div>
             </aside>
-
         </div>
-
-        <footer class="orkut-footer">
-            <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
-            <div class="footer-links">
-                <a href="#">Sobre o orkut</a> |
-                <a href="#">novidades</a> |
-                <a href="#">centro de segurança</a> |
-                <a href="#">privacidade</a> |
-                <a href="#">termos de uso</a> |
-                <a href="#">ajuda</a>
-            </div>
-        </footer>
     </main>
 
+    <!-- Modal Criar Tópico -->
     <div id="create-topic-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal" id="close-topic-modal">&times;</span>
-            <h3 style="margin-top: 0;">Criar novo tópico</h3>
-            <input type="text" id="new-topic-title" class="edit-input" placeholder="Título do tópico" style="margin: 10px 0;">
-            <textarea id="new-topic-body" class="edit-input" rows="5" placeholder="Conteúdo do tópico..." style="margin-bottom: 10px;"></textarea>
-            <div style="text-align: right;">
-                <button id="submit-topic-btn" class="orkut-btn">Criar tópico</button>
-            </div>
+            <h3>Criar novo tópico</h3>
+            <input type="text" id="new-topic-title" class="edit-input" placeholder="Título do tópico" style="margin-bottom: 10px;">
+            <textarea id="new-topic-body" class="edit-input" rows="5" placeholder="Mensagem..."></textarea>
+            <button id="submit-topic-btn" class="orkut-btn" style="margin-top: 10px;">Criar tópico</button>
         </div>
     </div>
-
-    <div id="members-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-members-modal">&times;</span>
-            <h3 style="margin-top: 0;">Membros da Comunidade</h3>
-            <div id="members-list-container" style="max-height: 300px; overflow-y: auto;">
-            </div>
-        </div>
-    </div>
-
-    <div id="create-poll-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" id="close-poll-modal">&times;</span>
-            <h3 style="margin-top: 0;">Criar nova enquete</h3>
-            <input type="text" id="new-poll-question" class="edit-input" placeholder="Pergunta da enquete" style="margin: 10px 0;">
-            <div id="poll-options-container">
-                <input type="text" class="edit-input poll-option-input" placeholder="Opção 1" style="margin-bottom: 5px;">
-                <input type="text" class="edit-input poll-option-input" placeholder="Opção 2" style="margin-bottom: 5px;">
-            </div>
-            <button id="add-poll-option-btn" class="orkut-btn" style="margin-bottom: 10px; font-size: 10px;">+ Adicionar opção</button>
-            <div style="text-align: right;">
-                <button id="submit-poll-btn" class="orkut-btn">Criar enquete</button>
-            </div>
-        </div>
-    </div>
-
 </body>
 </html>

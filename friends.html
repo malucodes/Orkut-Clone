@@ -5,16 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>orkut - Meus Amigos</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="friends.css">
     <script src="script.js" defer></script>
-    <style>
-        .comm-info-card { background: white; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
-        .comm-title-large { font-size: 24px; font-weight: 300; color: black; font-family: Arial, sans-serif; }
-        .comm-divider { height: 1px; background: #e0e0e0; margin: 10px 0 20px 0; width: 100%; }
-        .friends-grid-full { display: flex; flex-wrap: wrap; gap: 15px; }
-        .friend-card-large { width: 120px; text-align: center; }
-        .friend-card-large img { width: 120px; height: 120px; object-fit: cover; border: 1px solid #ccc; padding: 2px; }
-        .friend-card-large span { display: block; margin-top: 5px; color: #0044cc; font-size: 12px; font-weight: bold; }
-    </style>
+    <script src="friends.js" defer></script>
 </head>
 <body>
 
@@ -22,9 +15,9 @@
         <div class="header-content">
             <img src="assets/images/orkut-logo.png" alt="orkut" class="logo">
             <nav class="main-nav">
-                <a href="index.html">Início</a>
-                <a href="index.html">Perfil</a>
-                <a href="#">Página de recados</a>
+                <a href="profile.html">Início</a>
+                <a href="profile.html">Perfil</a>
+                <a href="scraps.html">Página de recados</a>
                 <a href="friends.html">Amigos</a>
                 <a href="my_communities.html">Comunidades</a>
             </nav>
@@ -42,13 +35,26 @@
         <div class="orkut-grid">
             <aside class="left-column">
                 <div class="card profile-pic-card">
-                    <img src="assets/images/profile-default.png" id="profile-image-sidebar" style="width:100%; display:block;">
-                    <div style="background: white; padding: 10px; margin-top: 5px; border-radius: 3px;">
-                        <div id="sidebar-name" style="font-weight:bold; color: #0044cc;"></div>
-                        <div id="sidebar-sex" style="font-size: 11px; color: #666;"></div>
-                        <div id="sidebar-rel" style="font-size: 11px; color: #666;"></div>
-                        <div id="sidebar-loc" style="font-size: 11px; color: #666;"></div>
+                    <div class="profile-frame">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/150px-Default_pfp.svg.png" id="profile-image-sidebar" alt="Foto de Perfil">
                     </div>
+                    <hr class="separator">
+                    <div class="sidebar-user-info">
+                        <a href="profile.html" class="user-name" id="sidebar-name">usuario</a>
+                        <div class="sidebar-details">
+                            <span id="sidebar-sex">sexo</span>
+                            <span id="sidebar-rel">relacionamento</span>
+                            <span id="sidebar-loc">Brasil</span>
+                        </div>
+                    </div>
+                    <hr class="separator">
+                    <ul class="profile-menu">
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTIgMTJjMi4yMSAwIDQtMS43OSA0LTRzLTEuNzktNC00LTQtNCAxLjc5LTQgNCAxLjc5IDQgNCA0em0wIDJjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+PC9zdmc+" alt=""> <a href="profile.html">perfil</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTQgMkg2Yy0xLjEgMC0xLjk5LjktMS45OSAyTDQgMjBjMCAxLjEuODkgMiAxLjk5IDJIMThjMS4xIDAgMi0uOSAyLTJWOGwtNi02em0yIDE2SDh2LTJoOHYyem0wLTRIOHYtMmg4djJ6bS0zLTVWMy41TDE4LjUgOUgxM3oiLz48L3N2Zz4=" alt=""> <a href="scraps.html">recados</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMjAgNGgtMy4xN0wxNSAySDlMNy4xNyA0SDRjLTEuMSAwLTIgLjktMiAydjEyYzAgMS4xLjkgMiAyIDJoMTZjMS4xIDAgMi0uOSAyLTJWNmMwLTEuMS0uOS0yLTItMnptLTggMTNjLTIuNzYgMC01LTIuMjQtNS01czIuMjQtNSA1LTUgNSAyLjI0IDUgNS0yLjI0IDUgNSA1eiIvPjwvc3ZnPg==" alt=""> <a href="#">fotos</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMTggNGwyIDRoLTNsLTItNGgtMmwyIDRoLTNsLTItNEg4bDIgNEg3TDUgNEg0Yy0xLjEgMC0xLjk5LjktMS45OSAyTDIgMThjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY0aC00eiIvPjwvc3ZnPg==" alt=""> <a href="#">videos</a></li>
+                        <li><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMiIgaGVpZ2h0PSIxMiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjNmQ4NGI0Ij48cGF0aCBkPSJNMjAgMkg0Yy0xLjEgMC0yIC45LTIgMnYxOGw0LTRoMTRjMS4xIDAgMi0uOSAyLTJWNGMwLTEuMS0uOS0yLTItMnoiLz48L3N2Zz4=" alt=""> <a href="testimonials.html">depoimentos</a></li>
+                    </ul>
                 </div>
             </aside>
 
@@ -56,37 +62,10 @@
                 <div class="comm-info-card">
                     <h1 class="comm-title-large">Meus Amigos</h1>
                     <div class="comm-divider"></div>
-                    <div id="full-friends-grid" class="friends-grid-full"></div>
+                    <div id="full-friends-grid" class="grid-full-container"></div>
                 </div>
             </section>
 
-            <aside class="right-column">
-                <div class="card friends-card">
-                    <div class="card-header">
-                        <h3 id="friends-count">amigos (3)</h3>
-                    </div>
-                    <div class="friends-grid">
-                        <div class="friend-item"><img src="https://picsum.photos/60?random=1"><span>Pedro</span></div>
-                        <div class="friend-item"><img src="https://picsum.photos/60?random=2"><span>Ana</span></div>
-                        <div class="friend-item"><img src="https://picsum.photos/60?random=3"><span>Carlos</span></div>
-                    </div>
-                    <div class="card-action">
-                        <a href="friends.html">ver todos</a>
-                    </div>
-                </div>
-
-                <div class="card communities-card">
-                    <div class="card-header">
-                        <h3 id="comm-count">comunidades (0)</h3>
-                    </div>
-                    <div class="comm-list">
-                    </div>
-                    <div class="card-action">
-                        <a href="my_communities.html" id="view-all-comm">ver todas</a>
-                        <a href="#" id="manage-comm">gerenciar</a>
-                    </div>
-                </div>
-            </aside>
         </div>
     </main>
 </body>

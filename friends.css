@@ -1,0 +1,11 @@
+.friends-grid-full { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+}
+
+.friend-card-large { width: 120px; text-align: center; }
+.friend-card-large img { width: 120px; height: 120px; object-fit: cover; border: 1px solid #ccc; padding: 2px; }
+.friend-card-large span { display: block; margin-top: 5px; color: #0044cc; font-size: 12px; font-weight: bold; }
+.friend-card-large a { text-decoration: none; }
+.friend-card-large a:hover span { text-decoration: underline; }

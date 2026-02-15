@@ -1,0 +1,11 @@
+.communities-grid-full { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+}
+
+.community-card-large { width: 120px; text-align: center; }
+.community-card-large img { width: 120px; height: 120px; object-fit: cover; border: 1px solid #ccc; padding: 2px; }
+.community-card-large span { display: block; margin-top: 5px; color: #0044cc; font-size: 12px; font-weight: bold; }
+.community-card-large a { text-decoration: none; }
+.community-card-large a:hover span { text-decoration: underline; }

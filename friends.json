@@ -1,0 +1,15 @@
+{
+    "initial": [
+        { "name": "João", "img": "https://picsum.photos/60?random=100" },
+        { "name": "Maria", "img": "https://picsum.photos/60?random=101" },
+        { "name": "José", "img": "https://picsum.photos/60?random=102" }
+    ],
+    "extra": [
+        { "name": "Lucas", "img": "https://picsum.photos/60?random=4" },
+        { "name": "Fernanda", "img": "https://picsum.photos/60?random=5" },
+        { "name": "Mariana", "img": "https://picsum.photos/60?random=6" },
+        { "name": "Gabriel", "img": "https://picsum.photos/60?random=7" },
+        { "name": "Juliana", "img": "https://picsum.photos/60?random=8" },
+        { "name": "Roberto", "img": "https://picsum.photos/60?random=9" }
+    ]
+}
