@@ -93,6 +93,10 @@ body {
     margin-bottom: 10px;
 }
 
+.card h1 {
+    font-size: 32px;
+}
+
 .profile-pic-card {
     text-align: left;
 }
@@ -208,7 +212,7 @@ body {
 
 .comm-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
     gap: 10px;
     margin-top: 10px;
     max-height: 360px;
@@ -447,7 +451,6 @@ body {
     background: #6d84b4;
 }
 
-/* Estilos extraídos das páginas internas (Friends e Communities) */
 .comm-info-card { 
     background: white; 
     padding: 15px; 
@@ -473,9 +476,30 @@ body {
     grid-template-columns: 160px 1fr;
 }
 
-/* Utilitários Gerais */
 .hidden { display: none !important; }
 .star-icon { color: gold; }
 .modal-title { margin-top: 0; }
 .modal-textarea { margin: 10px 0; }
 .modal-footer { text-align: right; }
+
+.info-row {
+    display: flex;
+    align-items: baseline;
+    padding: 0;
+    font-size: 11px;
+    margin-bottom: 2px;
+}
+
+.info-label {
+    text-align: left;
+    padding-right: 2px;
+    font-weight: bold;
+    color: #000;
+    width: 90px;
+    flex-shrink: 0;
+}
+
+.info-data {
+    text-align: left;
+    color: #000;
+}

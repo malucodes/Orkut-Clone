@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Utilitários locais (para garantir independência)
     const $ = (id) => document.getElementById(id);
     const qs = (sel) => document.querySelector(sel);
     const storage = {
@@ -9,13 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
         setJson: (k, v) => sessionStorage.setItem(k, JSON.stringify(v))
     };
 
-    // Carrega comunidades para encontrar a atual
     let allCommunities = storage.getJson('allCommunities', []);
     
     const urlParams = new URLSearchParams(window.location.search);
     const commId = parseInt(urlParams.get('id'));
     
-    // Se não tiver dados no storage (acesso direto), tenta carregar do JSON
     if (allCommunities.length === 0) {
         fetch('communities.json')
             .then(r => r.json())
@@ -38,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Renderiza dados básicos
         document.title = `orkut - ${community.name}`;
 
         const commImage = $('comm-image');
@@ -56,14 +52,73 @@ document.addEventListener('DOMContentLoaded', function() {
         const commNameMain = $('comm-name-main');
         if (commNameMain) commNameMain.textContent = community.name;
         
-        const commDesc = $('comm-description');
-        if (commDesc) commDesc.textContent = community.description;
+        const infoCard = qs('.comm-info-card');
+        if (infoCard) {
+            const oldGrid = infoCard.querySelector('.comm-details-grid');
+            const oldDivider = infoCard.querySelector('.comm-divider');
+            const oldDesc = infoCard.querySelector('.comm-desc-text');
+            
+            if (oldGrid) oldGrid.style.display = 'none';
+            if (oldDivider) oldDivider.style.display = 'none';
+            if (oldDesc) oldDesc.style.display = 'none';
 
-        // Renderiza Membros (Preview)
+            let newGrid = infoCard.querySelector('.generated-info-grid');
+            if (!newGrid) {
+                newGrid = document.createElement('div');
+                newGrid.className = 'generated-info-grid';
+                newGrid.style.marginTop = '15px';
+                infoCard.appendChild(newGrid);
+            }
+
+            newGrid.innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div>
+                        <div class="info-row">
+                            <div class="info-label">Idioma:</div>
+                            <div class="info-data">Português (Brasil)</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Categoria:</div>
+                            <div class="info-data">Outros</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Dono:</div>
+                            <div class="info-data"><a href="#" style="color:#0044cc; text-decoration:none;">moderador</a></div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Tipo:</div>
+                            <div class="info-data">Pública</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="info-row">
+                            <div class="info-label">Privacidade:</div>
+                            <div class="info-data">Aberta</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Criação:</div>
+                            <div class="info-data">20/07/2006</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Membros:</div>
+                            <div class="info-data">${community.members.toLocaleString('pt-BR')}</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">Local:</div>
+                            <div class="info-data">Brasil</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="border-top: 1px solid #e0e0e0; margin: 15px 0;"></div>
+                <div style="padding: 0 5px;">
+                    <div style="line-height: 1.5;">${community.description}</div>
+                </div>
+            `;
+        }
+
         const membersContainer = $('comm-members-preview');
         if (membersContainer) {
             membersContainer.innerHTML = '';
-            // Gera 9 membros aleatórios para exibir
             for (let i = 0; i < 9; i++) {
                 const randomId = Math.floor(Math.random() * 1000);
                 const names = ['Ana', 'Carlos', 'João', 'Maria', 'Pedro', 'Juliana', 'Fernanda', 'Roberto', 'Lucas', 'Gabriel'];
@@ -76,8 +131,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Renderiza Tópicos
-        const forumContainer = $('comm-forum-topics');
+        let forumContainer = $('comm-forum-topics');
+        
+        if (!forumContainer) {
+            const contentArea = qs('.center-column .card') || qs('.card');
+            if (contentArea) {
+                const header = document.createElement('h3');
+                header.textContent = 'Fórum';
+                header.style.marginTop = '20px';
+                contentArea.appendChild(header);
+                
+                forumContainer = document.createElement('div');
+                forumContainer.id = 'comm-forum-topics';
+                contentArea.appendChild(forumContainer);
+            }
+        }
+        
+        if (!community.topics) community.topics = [];
+        community.topics = community.topics.filter(t => t.title !== 'Enquete' && t.title !== 'Enquetes' && t.title !== 'Membros');
+
         const renderTopics = () => {
             if (forumContainer) {
                 let topicsHtml = '';
@@ -108,7 +180,100 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         renderTopics();
 
-        // Modal de Criar Tópico
+        const menuItems = document.querySelectorAll('.comm-menu-item');
+        const centerColumn = qs('.center-column');
+
+        if (!document.getElementById('members-modal')) {
+            const modalHtml = `
+                <div id="members-modal" class="modal">
+                    <div class="modal-content" style="width: 400px; text-align: center;">
+                        <span class="close-modal" id="close-members-modal" style="float:right; cursor:pointer;">&times;</span>
+                        <h3 style="margin-top:0; color:#003399;">Membros da Comunidade</h3>
+                        <div id="members-modal-list" style="max-height: 300px; overflow-y: auto; margin-top: 15px; text-align: left;"></div>
+                    </div>
+                </div>`;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+            
+            document.addEventListener('click', (e) => {
+                if (e.target.id === 'close-members-modal' || e.target.id === 'members-modal') {
+                    const m = document.getElementById('members-modal');
+                    if (m) m.style.display = 'none';
+                }
+            });
+        }
+
+        const switchTab = (tabName) => {
+            const infoCard = qs('.comm-info-card');
+            const forumCard = qs('#comm-forum-topics')?.closest('.comm-forum-card') || qs('#comm-forum-topics');
+            const pollCard = qs('#poll-container')?.closest('.comm-forum-card') || qs('#poll-container');
+
+            if (infoCard) infoCard.style.display = 'none';
+            if (forumCard) forumCard.style.display = 'none';
+            if (pollCard) pollCard.style.display = 'none';
+
+            if (tabName === 'perfil') {
+                if (infoCard) infoCard.style.display = 'block';
+                if (forumCard) forumCard.style.display = 'block';
+            } else if (tabName === 'fórum') {
+                if (forumCard) forumCard.style.display = 'block';
+            } else if (tabName === 'enquetes') {
+                if (pollCard) {
+                    pollCard.style.display = 'block';
+                    renderPoll();
+                }
+            }
+
+            menuItems.forEach(item => {
+                if (item.textContent.trim().toLowerCase() === tabName) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        };
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tabName = item.textContent.trim().toLowerCase();
+                
+                if (tabName === 'membros') {
+                    const modal = $('members-modal');
+                    const list = $('members-modal-list');
+                    if (modal && list) {
+                        list.innerHTML = '';
+                        const limit = 12;
+                        for (let i = 0; i < limit; i++) {
+                            const randomId = Math.floor(Math.random() * 1000) + i;
+                            const names = ['Ana', 'Carlos', 'João', 'Maria', 'Pedro', 'Juliana', 'Fernanda', 'Roberto', 'Lucas', 'Gabriel'];
+                            const name = names[Math.floor(Math.random() * names.length)];
+                            list.insertAdjacentHTML('beforeend', `
+                                <div style="display: flex; align-items: center; padding: 5px; border-bottom: 1px solid #eee;">
+                                    <img src="https://picsum.photos/30?random=${randomId}" style="width:30px; height:30px; object-fit:cover; margin-right: 10px; border: 1px solid #ccc;">
+                                    <span style="color: #003399; font-size: 11px;">${name}</span>
+                                </div>`);
+                        }
+
+                        const totalMembers = community.members || 0;
+                        const remaining = totalMembers - limit;
+                        
+                        if (remaining > 0) {
+                            list.insertAdjacentHTML('beforeend', `
+                                <div style="padding: 10px; text-align: center; color: #666; font-size: 11px; margin-top: 5px; font-style: italic;">
+                                    ... e mais ${remaining.toLocaleString('pt-BR')} membros nesta comunidade
+                                </div>`);
+                        }
+
+                        modal.style.display = 'block';
+                    }
+                } else {
+                    switchTab(tabName);
+                }
+            });
+        });
+
+        switchTab('perfil');
+
         const createTopicBtn = qs('.comm-create-topic-btn');
         const topicModal = $('create-topic-modal');
         const closeTopicModal = $('close-topic-modal');
@@ -133,7 +298,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (!community.topics) community.topics = [];
                         community.topics.unshift(newTopic);
                         
-                        // Atualiza no storage global
                         const allComms = storage.getJson('allCommunities', []);
                         const idx = allComms.findIndex(c => c.id === id);
                         if(idx !== -1) {
@@ -150,7 +314,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Botão Participar/Sair
         const joinBtn = $('join-comm-btn-main');
         const joinLink = $('join-comm-link');
         const storageKey = `joined_comm_${id}`;
@@ -188,7 +351,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Denunciar
         const reportAbuseLink = $('report-abuse-link');
         if (reportAbuseLink) {
             reportAbuseLink.addEventListener('click', (e) => {
@@ -199,8 +361,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Enquetes
-        const pollContainer = $('poll-container');
         const pollStorageKey = `poll_vote_${id}`;
         const pollDataKey = `comm_poll_data_${id}`;
         
@@ -214,7 +374,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function renderPoll() {
-            if (!pollContainer) return;
+            const container = $('poll-container');
+            if (!container) return;
             
             const userVote = storage.get(pollStorageKey);
             let html = `<h4 style="margin-top:0; margin-bottom:10px;">${pollData.question}</h4>`;
@@ -240,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 html += `<button type="submit" class="orkut-btn" style="margin-top:10px;">Votar</button></form>`;
             }
-            pollContainer.innerHTML = html;
+            container.innerHTML = html;
 
             const pollForm = $('poll-form');
             if (pollForm) {
@@ -251,7 +412,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         const idx = parseInt(selected.value);
                         pollData.votes[idx]++;
                         storage.set(pollStorageKey, 'true');
-                        // Salvar dados da enquete se necessário (opcional para este escopo)
                         renderPoll();
                     } else {
                         alert('Selecione uma opção para votar.');
@@ -259,6 +419,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
-        renderPoll();
+
+        if (!document.querySelector('.orkut-footer')) {
+            const footerHtml = `<div class="orkut-footer"><img src="assets/images/orkut-logo.png" style="height: 20px;"><div class="footer-links"><a href="#">Sobre o Orkut</a> | <a href="#">Centro de Segurança</a> | <a href="#">Privacidade</a> | <a href="#">Termos</a> | <a href="#">Contato</a></div><div style="flex-grow: 1; text-align: right; font-size: 10px; color: #999;">© 2006 Google</div></div>`;
+            const mainWrapper = qs('.main-wrapper');
+            if (mainWrapper) {
+                mainWrapper.insertAdjacentHTML('beforeend', footerHtml);
+            }
+        }
     }
 });

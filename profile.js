@@ -2,13 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const $ = (id) => document.getElementById(id);
     const qs = (sel) => document.querySelector(sel);
     
-    // Reutiliza helpers globais se disponíveis, senão define locais
     const storage = window.storage || {
         get: (k, d) => sessionStorage.getItem(k) || d,
         set: (k, v) => sessionStorage.setItem(k, v)
     };
 
-    // --- Sorte do Dia ---
     fetch('profile.json')
         .then(r => r.json())
         .then(data => {
@@ -21,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(err => console.error('Erro ao carregar perfil:', err));
 
-    // --- Estatísticas (Fotos, Vídeos, Fãs) ---
     ['stat-photos', 'stat-videos', 'stat-fans'].forEach(id => {
         const el = $(id);
         if (el) {
@@ -34,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // --- Upload de Foto de Perfil ---
     const profileImage = $('profile-image');
     const profileUpload = $('profile-upload');
     
@@ -64,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Edição de Perfil ---
     const editBtn = $('edit-profile-btn');
     const fields = [
         { id: 'profile-status', type: 'input' },
@@ -97,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const isEditing = editBtn.getAttribute('data-editing') === 'true';
 
             if (isEditing) {
-                // Salvar
                 const nameEl = $('profile-name');
                 const nameInput = nameEl ? nameEl.querySelector('.edit-input') : null;
                 if (nameInput) {
@@ -138,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 editBtn.setAttribute('data-editing', 'false');
 
             } else {
-                // Editar
                 fields.forEach(field => {
                     const el = $(field.id);
                     if (!el) return;
@@ -170,11 +163,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Abas e Avaliações ---
-    const tabSocial = $('tab-social');
     const tabProf = $('tab-prof');
-    if (tabSocial && tabProf) {
-        tabSocial.addEventListener('click', () => { tabSocial.classList.add('active'); tabProf.classList.remove('active'); });
-        tabProf.addEventListener('click', () => { tabProf.classList.add('active'); tabSocial.classList.remove('active'); });
+    if (tabProf) {
+        tabProf.remove();
     }
 });

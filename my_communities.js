@@ -2,13 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const $ = (id) => document.getElementById(id);
     const storage = window.storage;
     
-    // Helper to format numbers
     const formatNumber = (num) => num.toLocaleString('pt-BR');
 
     fetch('communities.json')
         .then(r => r.json())
         .then(data => {
-            // Inicializa comunidades padrão se não existirem
             if (!storage.get('default_comms_init_all')) {
                 data.forEach(c => storage.set(`joined_comm_${c.id}`, 'true'));
                 storage.set('default_comms_init_all', 'true');
@@ -16,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const grid = $('all-communities-grid');
             if (grid) {
-                // Filtra apenas as comunidades que o usuário participa
                 const joinedComms = data.filter(c => storage.get(`joined_comm_${c.id}`) === 'true');
 
                 joinedComms.forEach(comm => {
@@ -32,6 +29,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>`;
                     grid.insertAdjacentHTML('beforeend', html);
                 });
+
+                if (!document.querySelector('.orkut-footer')) {
+                    const footerHtml = `<div class="orkut-footer"><img src="assets/images/orkut-logo.png" style="height: 20px;"><div class="footer-links"><a href="#">Sobre o Orkut</a> | <a href="#">Centro de Segurança</a> | <a href="#">Privacidade</a> | <a href="#">Termos</a> | <a href="#">Contato</a></div><div style="flex-grow: 1; text-align: right; font-size: 10px; color: #999;">© 2006 Google</div></div>`;
+                    const mainWrapper = document.querySelector('.main-wrapper');
+                    if (mainWrapper) {
+                        mainWrapper.insertAdjacentHTML('beforeend', footerHtml);
+                    } else {
+                        grid.parentElement.insertAdjacentHTML('afterend', footerHtml);
+                    }
+                }
             }
         })
         .catch(err => console.error('Erro ao carregar comunidades:', err));

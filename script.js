@@ -18,7 +18,7 @@ function updateSidebar() {
     const headerEmail = qs('.user-info span');
     if (headerEmail) {
         const cleanName = nameToUse.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-        const emailUser = cleanName.trim().split(/\s+/).join('123').toLowerCase();
+        const emailUser = cleanName.trim().split(/\s+/).join('.').toLowerCase();
         headerEmail.textContent = headerEmail.title = `${emailUser}@orkut.com`;
     }
 
@@ -72,7 +72,6 @@ function createMessageSystem(key, defaultData, itemClass, typeName) {
 window.createMessageSystem = createMessageSystem;
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Carrega dados salvos nos campos de perfil (apenas visualização inicial)
     const fields = ['profile-status', 'profile-bio', 'profile-name', 'profile-sex', 'profile-rel', 'profile-birth', 'profile-age', 'profile-interests', 'profile-children', 'profile-ethnicity', 'profile-humor', 'profile-sexual', 'profile-style', 'profile-smoke', 'profile-drink', 'profile-pets', 'profile-live', 'profile-hometown', 'profile-web', 'profile-passions', 'profile-sports', 'profile-activities', 'profile-country'];
     fields.forEach(field => {
         const el = $(typeof field === 'string' ? field : field.id);
@@ -137,13 +136,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const allCommsGrid = $('all-communities-grid');
             if (allCommsGrid) {
+                if (allCommsGrid.parentElement) {
+                    allCommsGrid.parentElement.style.width = '100%';
+                }
+
+                allCommsGrid.innerHTML = '';
+                allCommsGrid.style.display = 'grid';
+                allCommsGrid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+                allCommsGrid.style.gap = '10px';
+                allCommsGrid.style.width = '100%';
+
                 joinedComms.forEach(comm => {
                     const html = `
-                        <div class="card-large-item">
+                        <div class="card-large-item" style="text-align: center;">
                             <a href="community.html?id=${comm.id}">
-                                <img src="${comm.img}" alt="${comm.name}">
+                                <img src="${comm.img}" alt="${comm.name}" style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ccc; padding: 2px; background: #fff;">
                             </a>
-                            <a href="community.html?id=${comm.id}">
+                            <a href="community.html?id=${comm.id}" style="display: block; margin-top: 5px; text-decoration: none; color: #003399; font-size: 11px; font-weight: bold;">
                                 <span>${comm.name}</span>
                             </a>
                             <div style="color: #666; font-size: 10px; margin-top: 2px;">(${comm.members.toLocaleString('pt-BR')} membros)</div>
