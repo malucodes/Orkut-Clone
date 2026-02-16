@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 const Scraps = window.createMessageSystem('orkut_scraps', data, 'scrap-item', 'scrap');
                 Scraps.renderAll();
-                window.ScrapsSystem = Scraps; // Expor para o modal de resposta
+                window.ScrapsSystem = Scraps;
             })
             .catch(err => console.error('Erro ao carregar scraps:', err));
     }

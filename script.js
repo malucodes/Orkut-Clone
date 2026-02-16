@@ -1,4 +1,3 @@
-// Definições globais e utilitários (fora do DOMContentLoaded para acesso imediato)
 const $ = (id) => document.getElementById(id);
 const qs = (sel) => document.querySelector(sel);
 const setTxt = (id, txt) => { const el = $(id); if(el) el.textContent = txt; };
@@ -132,7 +131,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 commCountEl.textContent = `comunidades (${joinedComms.length})`;
             }
             
-            renderCommunities(joinedComms.slice(0, 6));
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentCommId = parseInt(urlParams.get('id'));
+            const displayComms = joinedComms.filter(c => c.id !== currentCommId);
+
+            renderCommunities(displayComms.slice(0, 6));
 
             const allCommsGrid = $('all-communities-grid');
             if (allCommsGrid) {
@@ -177,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const commHtml = `
                 <div class="comm-item">
                     <a href="community.html?id=${comm.id}" style="text-decoration: none;">
-                        <img src="${comm.img}" alt="${comm.name}" title="${comm.description}">
+                        <img src="${comm.img}" alt="${comm.name}" title="${comm.name}">
                         <span style="display:block; margin-bottom: 2px;">${comm.name}</span>
                         <span style="color: #666; font-size: 9px;">(${memberCount})</span>
                     </a>
@@ -191,12 +194,17 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
 
             const joinedComms = allCommunities.filter(c => storage.get(`joined_comm_${c.id}`) === 'true');
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentCommId = parseInt(urlParams.get('id'));
+            const displayComms = joinedComms.filter(c => c.id !== currentCommId);
+
             if (!commExpanded) {
-                renderCommunities(joinedComms);
+                renderCommunities(displayComms);
                 viewAllCommBtn.textContent = 'voltar';
                 commExpanded = true;
             } else {
-                renderCommunities(joinedComms.slice(0, 6));
+                renderCommunities(displayComms.slice(0, 6));
                 viewAllCommBtn.textContent = 'ver todas';
                 commExpanded = false;
             }

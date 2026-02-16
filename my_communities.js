@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const grid = $('all-communities-grid');
             if (grid) {
+                grid.innerHTML = '';
                 const joinedComms = data.filter(c => storage.get(`joined_comm_${c.id}`) === 'true');
 
                 joinedComms.forEach(comm => {

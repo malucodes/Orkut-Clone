@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 const Testimonials = window.createMessageSystem('orkut_testimonials', data, 'testimonial-item', 'testimonial');
                 Testimonials.renderAll();
-                window.TestimonialsSystem = Testimonials; // Expor para o modal de resposta
+                window.TestimonialsSystem = Testimonials;
             })
             .catch(err => console.error('Erro ao carregar depoimentos:', err));
     }

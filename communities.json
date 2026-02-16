@@ -1,123 +1,153 @@
 [
-    { "id": 1, "name": "Eu nunca terminei uma borracha", "img": "assets/images/terminar-borracha.png", "description": "Para quem sempre perde a borracha antes do fim.", "members": 12054, "topics": [
+    { "id": 1, "name": "Eu nunca terminei uma borracha", "img": "assets/images/terminar-borracha.png", 
+    "description": "<span style=\"color: #1A0DAB;\">Comunidade para todos aqueles que nunca terminaram uma borracha na vida!\n\nVocê desde que é gente fica intrigado com o desaparecimento das suas borrachas?\nNão entende por que de uma hora para outra sua borracha resolve passear?\n\nSeja porque vocé a perde logo no começo, ou porque ela some do nada, ou também às vezes porque seu amigo pega \"emprestado\"\n\nAgora você sabe que você não é o único no mundo que nunca terminou uma borracha! :p</span>", "members": 12054, "topics": [
         { "title": "Onde elas vão parar?", "author": "Carlos", "replies": 42, "date": "22/07/2006" },
         { "title": "Consegui terminar uma!", "author": "Mentiroso", "replies": 105, "date": "21/07/2006" },
         { "title": "A minha borracha quebrou no meio", "author": "Ana", "replies": 12, "date": "20/07/2006" }
     ]},
-    { "id": 2, "name": "Bocejei ao ver essa comunidade", "img": "assets/images/boceja-comunidade.png", "description": "O sono é contagioso, cuidado!", "members": 5432, "topics": [
+    { "id": 2, "name": "Bocejei ao ver essa comunidade", "img": "assets/images/boceja-comunidade.png", 
+    "description": "<span style=\"color: #1A0DAB; font-weight: bold;\">A comunidade que está deixando todos de BOCA ABERTA!\n\nLiteralmente!\n\nSe vc tb bocejou ao ver esta comunidade, entre aqui!</span>", "members": 5432, "topics": [
         { "title": "Bocejei agora mesmo", "author": "Sono", "replies": 10, "date": "20/07/2006" },
         { "title": "É automático, incrível", "author": "Pedro", "replies": 5, "date": "19/07/2006" }
     ]},
-    { "id": 3, "name": "Eu Odeio Acordar Cedo", "img": "assets/images/odeio-acordar-cedo.png", "description": "O sol nasce para todos, mas eu prefiro dormir.", "members": 987654, "topics": [
+    { "id": 3, "name": "Eu Odeio Acordar Cedo", "img": "assets/images/odeio-acordar-cedo.png", 
+    "description": "<span style=\"color: #1A0DAB;\">Comunidade feita para todos aqueles que acham que o dia só começa apôs o meio-dia.\n\n\"Eu faço samba até mais tarde e tenho muito sono de manhã\"\n(Chico Buarque)</span>\n\n<span style=\"color: #FF0000; font-weight: bold; display: block; text-align: center;\">A MAIOR E MELHOR COMUNIDADE DO ORKUT!</span>", "members": 987654, "topics": [
         { "title": "Bom dia é o caramba", "author": "Sonolento", "replies": 500, "date": "Hoje" },
         { "title": "Dicas para acordar cedo?", "author": "Desesperado", "replies": 2, "date": "Ontem" },
         { "title": "Quem mais tá com sono?", "author": "Zzz", "replies": 15, "date": "20/07/2006" }
     ]},
-    { "id": 4, "name": "Eu amo fim de semana", "img": "assets/images/amo-fim-semana.png", "description": "A melhor parte da semana chegou.", "members": 500100, "topics": [
+    { "id": 4, "name": "Eu amo fim de semana", "img": "assets/images/amo-fim-semana.png", 
+    "description": "<span style=\"color: #1A0DAB;\">Fim de semana e tudo de bom! E quem não gosta de fim de semana?\n\nVocê espera a semana toda para curtir o fim de semana? Gosta de passear, encontrar os amigos, dormir, namorar, pedalar, viajar, sair para a balada, tomar todas, ir para igreja, ficar na internet, ir ao cinema, jogar seu game favorito, ir para o shopping, praticar esportes, enfim tudo de bom que o fim de semana pode oferecer?\n\nEntão, esta é a sua comunidade!\n\n\nFim de semana passa rápido, e sabe o que devemos fazer? aproveitá-lo ao máximo!\n\n\n• O membro que postar mensagem de propaganda será expulso!\n• Vamos manter a nossa comunidade organizada!</span>", "members": 500100, "topics": [
         { "title": "Sexta-feira chegou!", "author": "Animado", "replies": 100, "date": "21/07/2006" },
         { "title": "Planos para o sábado?", "author": "Curioso", "replies": 45, "date": "20/07/2006" }
     ]},
-    { "id": 5, "name": "Eu colho Flores e TONY RAMOS!", "img": "assets/images/flores-tony.png", "description": "Trocadilhos infames que amamos.", "members": 8765, "topics": [
+    { "id": 5, "name": "Eu colho Flores e TONY RAMOS!", "img": "assets/images/flores-tony.png", 
+    "description": "EU COLHO FLORES E O TONY RAMOS KKKK!!!!", "members": 8765, "topics": [
         { "title": "Melhor trocadilho ever", "author": "Risada", "replies": 30, "date": "18/07/2006" },
         { "title": "Postem mais trocadilhos", "author": "Fã", "replies": 12, "date": "15/07/2006" }
     ]},
-    { "id": 6, "name": "Detesto erros de digitassão", "img": "assets/images/erro-digitaçao.png", "description": "A ironia de escrever errado de propósito.", "members": 23456, "topics": [
+    { "id": 6, "name": "Detesto erros de digitassão", "img": "assets/images/erro-digitaçao.png", 
+    "description": "É intolerável\n\n\n\n\n\n-", "members": 23456, "topics": [
         { "title": "Isso me irrita muito", "author": "Professor", "replies": 50, "date": "19/07/2006" },
         { "title": "Digitassão foi de propósito?", "author": "Duvidoso", "replies": 20, "date": "18/07/2006" }
     ]},
-    { "id": 7, "name": "Eu nunca morri na minha vida", "img": "assets/images/nunca-morri.png", "description": "Fato comprovado cientificamente.", "members": 1000000, "topics": [
+    { "id": 7, "name": "Eu nunca morri na minha vida", "img": "assets/images/nunca-morri.png", 
+    "description": "<span style=\"font-style: italic;\">Para todas as pessoas que nunca tiveram a sensação de estarem mortas... e que se orgulham por isso...\nAgora você pode levantar a cabeça e dizer:\n<span style=\"color: #FF0000; text-decoration: underline;\">EU NUNCA MORRI NA MINHA VIDA...</span>\nSe você se sente mais vivo do que de costume, entre, essa é sua comunidade... junte-se aos outros vivos\nAgora se você já morreu... deixe-nos em paz!\n</span>", "members": 1000000, "topics": [
         { "title": "Eu também não!", "author": "Vivo", "replies": 1000, "date": "22/07/2006" },
         { "title": "Alguém já?", "author": "Fantasma", "replies": 666, "date": "21/07/2006" }
     ]},
-    { "id": 8, "name": "Ladrões de banco", "img": "assets/images/ladrao-banco.png", "description": "Aquele banco da praça que sumiu.", "members": 1200, "topics": [
+    { "id": 8, "name": "Ladrões de banco", "img": "assets/images/ladrao-banco.png", 
+    "description": "Comunidade dedicada aos Malacos que praticam essa arte, ou para quem já foi vitima desses malandros sem escrúpulos.\n\n\n\n\n\n\n\n<span style=\"font-style: italic;\">Eu mesmo estava uma vez com o meu banquinho num barzinho, sai para pedir uma bebida e quando voltei ele tinha sumido... tá difícil ter lugar pra sentar hoje em dia, malditos ladrões de banco :(</span>", "members": 1200, "topics": [
         { "title": "Roubaram o meu lugar", "author": "Vítima", "replies": 5, "date": "10/07/2006" },
         { "title": "Banco da praça ou de sentar?", "author": "Confuso", "replies": 8, "date": "09/07/2006" }
     ]},
-    { "id": 9, "name": "Não sei individualizar duplas", "img": "assets/images/individualizar-duplas.png", "description": "Chitãozinho e Xororó são uma pessoa só?", "members": 4500, "topics": [
+    { "id": 9, "name": "Não sei individualizar duplas", "img": "assets/images/individualizar-duplas.png", 
+    "description": "Imagino como se os integrantes da dupla estivessem sempre juntos, o tempo todo como se eles fossem uma única pessoa.\n\nA propósito, você não acha que tanto <span style=\"font-weight: bold;\">Chitaozinho e Xororó</span> como o <span style=\"font-weight: bold;\">Chitão e Xororó</span> saíram bem na foto?", "members": 4500, "topics": [
         { "title": "Sandy e Junior", "author": "Fã", "replies": 40, "date": "15/07/2006" },
         { "title": "Quem é quem?", "author": "Perdido", "replies": 15, "date": "14/07/2006" }
     ]},
-    { "id": 10, "name": "Eu leio shampoo no banho", "img": "assets/images/leio-banho.png", "description": "Cultura e higiene pessoal.", "members": 67890, "topics": [
+    { "id": 10, "name": "Eu leio shampoo no banho", "img": "assets/images/leio-banho.png", 
+    "description": "Comunidade para as pessoas que durante o banho pegam o frasco do shampoo para ler a composição e descobrem coisas no shampoo como Meticloroisobiazolinona...\nmas... que diabos é isto ?\n\nNão crie tópicos repetidos ou com propagandas, os criadores podem ser expulsos sem aviso prévio.", "members": 67890, "topics": [
         { "title": "Composição química interessante", "author": "Químico", "replies": 12, "date": "20/07/2006" },
         { "title": "Esqueci a revista", "author": "Leitor", "replies": 25, "date": "19/07/2006" }
     ]},
-    { "id": 11, "name": "EU AMO CHOCOLATE!", "img": "assets/images/amo-chocolate.png", "description": "A melhor invenção da humanidade.", "members": 800000, "topics": [
+    { "id": 11, "name": "EU AMO CHOCOLATE!", "img": "assets/images/amo-chocolate.png", 
+    "description": "<span style=\"color: #964B00; display: block; text-align: center; font-weight: bold;\">Comunidade criada para os amantes do chocolate\nEssa delicia que ninguém resiste a um pedacinho\nBom, mas no nosso caso sempre e um pedação\nA Eu Amo Chocolate nasceu de uma paixão\nsomos apaixonados por chocolate\ne por tudo que pode ser feito com ele\n</span>", "members": 800000, "topics": [
         { "title": "Branco ou Preto?", "author": "Chocólatra", "replies": 88, "date": "15/07/2006" },
         { "title": "Receita de brigadeiro", "author": "Vovó", "replies": 30, "date": "10/07/2006" }
     ]},
-    { "id": 12, "name": "Deus me disse: desce e arrasa!", "img": "assets/images/desce-arrasa.png", "description": "Autoestima lá em cima sempre.", "members": 34567, "topics": [
+    { "id": 12, "name": "Deus me disse: desce e arrasa!", "img": "assets/images/desce-arrasa.png", 
+    "description": "<span style=\"color: #1A0DAB;\">Comunidade criada para as pessoas que <span style=\"font-weight: bold; text-decoration: underline;\">NÃO</span> vieram a esse mundo somente a passeio. Se você acha que a sua <span style=\"font-weight: bold;\">presença</span> aqui na <span style=\"font-weight: bold;\">TERRA</span> deve ser marcante, você veio ao lugar certo. Você já se perguntou quão privilegiadas são as pessoas que te conhecem?\nPergunte e diga:\n\n<span style=\"font-weight: bold; font-style: italic;\">Deus me disse: desce e arrasa!</span></span>", "members": 34567, "topics": [
         { "title": "Hoje eu tô demais", "author": "Diva", "replies": 50, "date": "21/07/2006" },
         { "title": "Autoestima é tudo", "author": "Feliz", "replies": 30, "date": "20/07/2006" }
     ]},
-    { "id": 13, "name": "Tocava Campainha e Corria", "img": "assets/images/campainha-correr.png", "description": "Adrenalina pura da infância.", "members": 56789, "topics": [
+    { "id": 13, "name": "Tocava Campainha e Corria", "img": "assets/images/campainha-correr.png", 
+    "description": "Quem nunca tocou a campainha de alguém e saiu correndo?\n\nSim, a campainha daquela vizinha chata, daquele vizinho insuportável que ninguém aguentava, daquela velha senhora que sempre brigava e xingava você e seus amigos para que brincassem \"MAIS PRÁ LÁ DA RUA\".\n\nTocava só pra ver a pessoa atender e ficar com aquela cara, e você lá dando risada até não querer mais.\n", "members": 56789, "topics": [
         { "title": "Quem nunca fez isso?", "author": "Moleque", "replies": 80, "date": "18/07/2006" },
         { "title": "O vizinho saiu bravo", "author": "Corredor", "replies": 45, "date": "17/07/2006" }
     ]},
-    { "id": 14, "name": "Eu tenho medo do PLANTÃO", "img": "assets/images/medo-plantao.png", "description": "Aquela música da Globo dá arrepios.", "members": 99999, "topics": [
+    { "id": 14, "name": "Eu tenho medo do PLANTÃO", "img": "assets/images/medo-plantao.png", 
+    "description": "<span style=\"display: block; text-align: center;\">Pode confessar, você não está sozinho nessa!\n\nÉ um dia qualquer, você está lá, assistindo a um programa qualquer, bem tranquilo e relaxado, quando de repente...\n\n\n\n<span style=\"font-weight: bold;\">Tan tan tan tan tan tan tan tan tan\n\ntan tan tan tan tan tan tan tan tan tan taaaaaaaaaan tan</span>\n\n\n\nEssa comunidade é para todos vocês que tem medo daquela música bizarra que toca quando estamos assistindo alguma programação na Rede Globo e somos interrompidos propositalmente pelo Plantão, geralmente com alguma noticia ruim... Se você tem vontade de desligar a TV, se esconder, mudar de canal, ou até ir para a casa da sua sogra para não ouvir esta musiquinha que dá arrepios e pesadelos, seu lugar é aqui!!!</span>", "members": 99999, "topics": [
         { "title": "A musiquinha assustadora", "author": "Medroso", "replies": 200, "date": "22/07/2006" },
         { "title": "Sempre notícia ruim", "author": "Tenso", "replies": 150, "date": "21/07/2006" }
     ]},
-    { "id": 15, "name": "Um mamão vai na cabeça...", "img": "assets/images/mamao-cabeca.png", "description": "Músicas que grudam na mente.", "members": 11223, "topics": [
+    { "id": 15, "name": "Um mamão vai na cabeça...", "img": "assets/images/mamao-cabeca.png", 
+    "description": "::\n\n\nUm mamão vai na cabeça\nE o movimento é sexy\nE o movimento é sexy\n\n\n", "members": 11223, "topics": [
         { "title": "E o movimento é sexy", "author": "Dançarino", "replies": 60, "date": "19/07/2006" },
         { "title": "Que música é essa?", "author": "Desinformado", "replies": 10, "date": "18/07/2006" }
     ]},
-    { "id": 16, "name": "Putz... Tá Fuçando Meu Orkut Né?", "img": "assets/images/fucando-orkut.png", "description": "Eu sei que você está olhando!", "members": 44556, "topics": [
+    { "id": 16, "name": "Putz... Tá Fuçando Meu Orkut Né?", "img": "assets/images/fucando-orkut.png", 
+    "description": "Essa comunidade é pra todos que gostam de visitar e ser visitados no orkut!!!!\nafinal.. fazer novos e principalmente (bons amigos) é bom demaiss!!!!\nE quem nunca fuçou o Orkut alheio, que atire a primeira pedraa!!rsrss.....\n\n", "members": 44556, "topics": [
         { "title": "Só olhando...", "author": "Stalker", "replies": 35, "date": "20/07/2006" },
         { "title": "Admitam que olham!", "author": "Dono", "replies": 20, "date": "19/07/2006" }
     ]},
-    { "id": 17, "name": "Chamadas perdidas: Mãe (50)", "img": "assets/images/chamadas-perdidas.png", "description": "O medo de chegar em casa.", "members": 77889, "topics": [
+    { "id": 17, "name": "Chamadas perdidas: Mãe (50)", "img": "assets/images/chamadas-perdidas.png", 
+    "description": "<span style=\"display: block; text-align: center; font-weight: bold; font-size: 28px;\">Ferrou mano... Ferrou! D:\n\n\n</span>", "members": 77889, "topics": [
         { "title": "Tô morto quando chegar", "author": "Filho", "replies": 100, "date": "21/07/2006" },
         { "title": "Era só pra perguntar algo", "author": "Mãe", "replies": 50, "date": "20/07/2006" }
     ]},
-    { "id": 18, "name": "Eu abro a geladeira para pensar", "img": "assets/images/geladeira-pensar.png", "description": "Quem nunca ficou olhando pro nada?", "members": 90123, "topics": [
+    { "id": 18, "name": "Eu abro a geladeira para pensar", "img": "assets/images/geladeira-pensar.png", 
+    "description": "Quem nunca abriu a geladeira sem motivo nenhum, seja ele pra pensar na vida, levar como um hoobie que não tem sentido algum, mas que várias pessoas fazem!", "members": 90123, "topics": [
         { "title": "O que eu vim fazer aqui?", "author": "Esquecido", "replies": 70, "date": "18/07/2006" },
         { "title": "Não tem nada pra comer", "author": "Faminto", "replies": 40, "date": "17/07/2006" }
     ]},
-    { "id": 19, "name": "Só mais 5 minutinhos", "img": "assets/images/minutinhos.png", "description": "A batalha diária contra o despertador.", "members": 150000, "topics": [
+    { "id": 19, "name": "Só mais 5 minutinhos", "img": "assets/images/minutinhos.png", 
+    "description": "Se você é daqueles que quando\nouve o despertador tocar, vai lá... desliga\no treco, depois vira pro lado e diz\n\n\"Ahhhh, só mais 5 minutinhos...\"\n\nDepois descobre que está atrasado de\nnovo, e que os \"5 minutinhos\" se\ntransformaram em vários \"minutaços\"\n\nEntão essa é sua comunidade!", "members": 150000, "topics": [
         { "title": "Atrasei de novo", "author": "Dorminhoco", "replies": 90, "date": "22/07/2006" },
         { "title": "Função soneca é vida", "author": "Preguiça", "replies": 60, "date": "21/07/2006" }
     ]},
-    { "id": 20, "name": "Imagina se pega no olho?", "img": "assets/images/pega-olho.png", "description": "Frases clássicas de mãe.", "members": 33445, "topics": [
+    { "id": 20, "name": "Imagina se pega no olho?", "img": "assets/images/pega-olho.png", 
+    "description": "Quem nunca teve uma tia, avó ou mãe que diante de uma situação QUALQUER exclamava:\n\n- Meu Deus! Imagina se pega no olho? Que perigo!\n\nSejam bem-vindos a essa que é uma das comunidades mais inúteis desse tal de Orkut.", "members": 33445, "topics": [
         { "title": "Minha mãe sempre diz", "author": "Filho", "replies": 30, "date": "15/07/2006" },
         { "title": "Brincadeira perigosa", "author": "Cauteloso", "replies": 15, "date": "14/07/2006" }
     ]},
-    { "id": 21, "name": "Eu lambo a tampinha do danone", "img": "assets/images/tampa-danone.png", "description": "Desperdício zero.", "members": 66778, "topics": [
+    { "id": 21, "name": "Eu lambo a tampinha do danone", "img": "assets/images/tampa-danone.png", 
+    "description": "Quem nunka lambew a tampinha do danone ou do seu iogurte preferido?? Ah fala seriu né!!! todo mundo faz isso! até vc q eu sei... e irresistível ver akela \"camadinha\" cremosa na tampa e não lamber!! vamu lá espalhe essa comunidade \"bestinha\" pros seus amigos! essa é uma das comunidades q mais pode crescer no Orkut qm nunka fez isso? rsssssss :P (^_^)", "members": 66778, "topics": [
         { "title": "A melhor parte", "author": "Guloso", "replies": 120, "date": "20/07/2006" },
         { "title": "Quem joga fora é rico", "author": "Econômico", "replies": 80, "date": "19/07/2006" }
     ]},
-    { "id": 22, "name": "Herrar é o mano", "img": "assets/images/errar-mano.png", "description": "Todo mundo erra, somos humanos.", "members": 22334, "topics": [
+    { "id": 22, "name": "Herrar é o mano", "img": "assets/images/errar-mano.png", 
+    "description": "Esse é brother. Leke muito maneiro... flw\n\n\n\n\n\n", "members": 22334, "topics": [
         { "title": "Ninguém é perfeito", "author": "Humano", "replies": 40, "date": "18/07/2006" },
         { "title": "Português difícil", "author": "Aluno", "replies": 25, "date": "17/07/2006" }
     ]},
-    { "id": 23, "name": "Corrigindo palavras nas ruas", "img": "assets/images/corrigindo-palavras.png", "description": "Para os fiscais de gramática.", "members": 8899, "topics": [
+    { "id": 23, "name": "Corrigindo palavras nas ruas", "img": "assets/images/corrigindo-palavras.png", 
+    "description": "Essa sua mania incontrolável de procurar erros em outdoors, panfletos, banners e faixas vai acabar te matando\n\n\n\n\n\n\n\n", "members": 8899, "topics": [
         { "title": "Placa de 'Vende-se'", "author": "Fiscal", "replies": 35, "date": "16/07/2006" },
         { "title": "Cardápio com erro", "author": "Cliente", "replies": 20, "date": "15/07/2006" }
     ]},
-    { "id": 24, "name": "Queria sorvete.. mas era feijão", "img": "assets/images/sorvete-feijao.png", "description": "A maior decepção culinária.", "members": 55667, "topics": [
+    { "id": 24, "name": "Queria sorvete.. mas era feijão", "img": "assets/images/sorvete-feijao.png", 
+    "description": "sua mãe, tia ou avó, eh daquelas que bota o resto daquele <span style=\"text-decoration: underline;\">\"delicioso\"</span> feijão do mês passado nos potes de sorvete?\n\npois eh, se você já foi enganado naquela tarde quente de verão. foi louco achando q era sorvete. e abriu e viu aquela coisa nojenta e marrom com cheiro forte de <span style=\"font-weight: bold;\">feijão.</span>\n\ncom certeza você já passou por essa situação, pode até ter sido outra gororoba, mas fatalmente você já caiu na pegadinha do pote de sorvete... algumas vezes, até já tinha separado o potinho, colher e cobertura pro sorvete!\n\nválido também para quem queria sorvete mas era papinha de neném, frango no pote de maionese ou pudim de beterraba\n\n", "members": 55667, "topics": [
         { "title": "Pote de sorvete enganador", "author": "Triste", "replies": 200, "date": "21/07/2006" },
         { "title": "Sempre acontece comigo", "author": "Vítima", "replies": 150, "date": "20/07/2006" }
     ]},
-    { "id": 25, "name": "Aí gente.. tô ralando", "img": "assets/images/ralando.png", "description": "Trabalho duro e honesto.", "members": 1234, "topics": [
+    { "id": 25, "name": "Aí gente.. tô ralando", "img": "assets/images/ralando.png", 
+    "description": "flw\n\n\n\n\n", "members": 1234, "topics": [
         { "title": "Trabalhando muito hoje", "author": "Cansado", "replies": 10, "date": "19/07/2006" },
         { "title": "Fim de semana chega logo", "author": "Ansioso", "replies": 15, "date": "18/07/2006" }
     ]},
-    { "id": 26, "name": "Odeio comunidade q muda d nome", "img": "assets/images/muda-nome.png", "description": "Você entra numa e vira outra nada a ver.", "members": 45678, "topics": [
+    { "id": 26, "name": "Odeio comunidade q muda d nome", "img": "assets/images/muda-nome.png", 
+    "description": "<span style=\"color: #1A0DAB; font-weight: bold;\">Se você assim como eu também odeia participar de uma comu legal, ai quando vê mudaram o nome dela pra algum nome que não tem nada a ver com o que estava antes...\nSACANAGEM!\nE ainda mais quando sacaneiam legal mudando para um com uma foto horrorosa...\nIsso é muito chato...\nSe você tbm concorda comigo... Fique a vontade!\n\n\nOBS: Todos os tópicos antigos foram removidos. A comunidade estava abandonada e muita bagunçada.</span>", "members": 45678, "topics": [
         { "title": "Entrei numa de rock e virou pagode", "author": "Revoltado", "replies": 50, "date": "15/07/2006" },
         { "title": "Por que fazem isso?", "author": "Curioso", "replies": 30, "date": "14/07/2006" }
     ]},
-    { "id": 27, "name": "SUA INVEJA FAZ A MINHA FAMA", "img": "assets/images/inveja-fama.png", "description": "Beijinho no ombro para o recalque.", "members": 98765, "topics": [
+    { "id": 27, "name": "SUA INVEJA FAZ A MINHA FAMA", "img": "assets/images/inveja-fama.png", 
+    "description": "NEM TEM MUITO O QUE DIZER, NÉ???!! O NOME DA COMUNIDADE DIZ TUDO: SUA INVEJA FAZ A MINHA FAMA, BUNDÃO!!!!! POR ISSO FALE.. MAS FALE MUITO... MUITO MESMO DE MIM.... SEM PERCEBER VOCÊ SÓ ME AJUDA НЕНЕНЕНЕНЕНЕ", "members": 98765, "topics": [
         { "title": "Beijinho no ombro", "author": "Diva", "replies": 100, "date": "22/07/2006" },
         { "title": "Recalque passa longe", "author": "Estrela", "replies": 80, "date": "21/07/2006" }
     ]},
-    { "id": 28, "name": "Anão vestido de palhaço mata 8", "img": "assets/images/anao-palhaco.png", "description": "Manchetes bizarras de jornal.", "members": 7654, "topics": [
+    { "id": 28, "name": "Anão vestido de palhaço mata 8", "img": "assets/images/anao-palhaco.png", 
+    "description": "Comunidade dedicada as manchetes que por si só já valem mais do que a notícia toda.\n\nInspirada em headlines como \"Hindu de 13 anos constrói mini-bomba nuclear\", \"Búfalo mantém família refém por 8 horas\" (vide foto), ou o titulo da comunidade, \"Anão vestido de palhaço mata 8 na Croácia\".\n\n(Antes de passar vergonha, leia as regras de postagem em \"eventos\")", "members": 7654, "topics": [
         { "title": "É verdade isso?", "author": "Assustado", "replies": 40, "date": "10/07/2006" },
         { "title": "Jornal sensacionalista", "author": "Cético", "replies": 25, "date": "09/07/2006" }
     ]},
-    { "id": 29, "name": "Eu ofereço comida no MSN", "img": "assets/images/comida-msn.png", "description": "Aceita um pedaço virtual?", "members": 3456, "topics": [
+    { "id": 29, "name": "Eu ofereço comida no MSN", "img": "assets/images/comida-msn.png", 
+    "description": "Tudo bem que eu acho isso estranho, mas fazer o que...\n\nGaranto que você também oferece pra um amigo, pelo msn, o que está comendo ou bebendo na sua casa!\n\nVocê oferece só pra fazer vontade ou só pra puxar conversa?\n\nE ai, quer um pudim de beterraba?\n", "members": 3456, "topics": [
         { "title": "Aceita um pedaço?", "author": "Generoso", "replies": 15, "date": "18/07/2006" },
         { "title": "Fome virtual", "author": "Faminto", "replies": 10, "date": "17/07/2006" }
     ]},
-    { "id": 30, "name": "Não fui eu... foi meu Eu lírico", "img": "assets/images/eu-lirico.png", "description": "A culpa é da poesia.", "members": 19283, "topics": [
+    { "id": 30, "name": "Não fui eu... foi meu Eu lírico", "img": "assets/images/eu-lirico.png", 
+    "description": "Arrumou encrenca? Quebrou o vaso de turmalina da sua avó? Tropeçou no fio do aspirador?\n\nNão se preocupe, é só culpar a poesia inerente a todo ato humano!\n", "members": 19283, "topics": [
         { "title": "Desculpa poética", "author": "Poeta", "replies": 20, "date": "20/07/2006" },
         { "title": "Aula de literatura", "author": "Estudante", "replies": 12, "date": "19/07/2006" }
     ]}

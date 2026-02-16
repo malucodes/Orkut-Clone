@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div style="border-top: 1px solid #e0e0e0; margin: 15px 0;"></div>
                 <div style="padding: 0 5px;">
-                    <div style="line-height: 1.5;">${community.description}</div>
+                    <div style="line-height: 1.5; white-space: pre-wrap;">${community.description}</div>
                 </div>
             `;
         }
