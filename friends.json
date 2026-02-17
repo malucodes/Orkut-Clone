@@ -1,6 +1,6 @@
 {
     "initial": [
-        { "name": "João", "img": "https://picsum.photos/60?random=100" },
+        { "name": "Paulo", "img": "https://picsum.photos/60?random=100" },
         { "name": "Maria", "img": "https://picsum.photos/60?random=101" },
         { "name": "José", "img": "https://picsum.photos/60?random=102" }
     ],

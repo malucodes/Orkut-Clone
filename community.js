@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             membersContainer.innerHTML = '';
             for (let i = 0; i < 9; i++) {
                 const randomId = Math.floor(Math.random() * 1000);
-                const names = ['Ana', 'Carlos', 'João', 'Maria', 'Pedro', 'Juliana', 'Fernanda', 'Roberto', 'Lucas', 'Gabriel'];
+                const names = ['Ana', 'Carlos', 'Felipe', 'Maria', 'Pedro', 'Juliana', 'Fernanda', 'Roberto', 'Lucas', 'Gabriel'];
                 const name = names[Math.floor(Math.random() * names.length)];
                 
                 const memberHtml = `
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         const limit = 12;
                         for (let i = 0; i < limit; i++) {
                             const randomId = Math.floor(Math.random() * 1000) + i;
-                            const names = ['Ana', 'Carlos', 'João', 'Maria', 'Pedro', 'Juliana', 'Fernanda', 'Roberto', 'Lucas', 'Gabriel'];
+                            const names = ['Ana', 'Carlos', 'Felipe', 'Maria', 'Pedro', 'Juliana', 'Fernanda', 'Roberto', 'Lucas', 'Gabriel'];
                             const name = names[Math.floor(Math.random() * names.length)];
                             list.insertAdjacentHTML('beforeend', `
                                 <div style="display: flex; align-items: center; padding: 5px; border-bottom: 1px solid #eee;">

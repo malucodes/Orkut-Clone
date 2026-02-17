@@ -163,6 +163,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const ratingBoxes = document.querySelectorAll('.rating-box');
+    ratingBoxes.forEach(box => {
+        const type = box.getAttribute('data-type');
+        const icons = box.querySelectorAll('.rate-icon');
+
+        const updateIcons = (rating) => {
+            icons.forEach((icon, index) => {
+                if (index < rating) {
+                    icon.style.filter = 'none';
+                    icon.style.opacity = '1';
+                } else {
+                    icon.style.filter = 'none';
+                    icon.style.opacity = '0.3';
+                }
+            });
+        };
+
+        const savedRating = parseInt(storage.get(`rating_${type}`, 0));
+        updateIcons(savedRating);
+
+        icons.forEach((icon, index) => {
+            icon.style.cursor = 'pointer';
+            icon.addEventListener('click', () => {
+                const newRating = index + 1;
+                storage.set(`rating_${type}`, newRating);
+                updateIcons(newRating);
+            });
+        });
+    });
+
     const tabProf = $('tab-prof');
     if (tabProf) {
         tabProf.remove();
