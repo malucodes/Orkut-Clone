@@ -1,5 +1,8 @@
 # ✦ Orkut Clone | Arqueologia Digital & Nostalgia
 
+![Status do Projeto](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen)
+![Aesthetics](https://img.shields.io/badge/Aesthetics-Y2K%20%2F%202000s-blue)
+
 Este projeto é um tributo ao **Orkut**, a rede social que definiu uma era na internet brasileira. O objetivo foi recriar a interface icônica e a experiência de usuário que marcou os anos 2000, unindo design clássico com tecnologias modernas de desenvolvimento web.
 
 ---
